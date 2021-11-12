@@ -5,16 +5,16 @@ const SideBar = () =>{
     const [dropMenuOpen, SetDropMenuOpen] = useState(true);
     return (
         <Container>
-            <MenuItem>Dashboard</MenuItem>
-            <MenuItem>Invoice</MenuItem>
-            <MenuItem>Statements</MenuItem>
-            <MenuItem onClick={()=>SetDropMenuOpen(!dropMenuOpen)}>Carrier Account</MenuItem>
+            <MenuItem  to='/'>Dashboard</MenuItem>
+            <MenuItem to='/invoice'>Invoice</MenuItem>
+            <MenuItem to='#'>Statements</MenuItem>
+            <MenuItem to="#" onClick={()=>SetDropMenuOpen(!dropMenuOpen)}>Carrier Account</MenuItem>
             <DropMenu dropMenuOpen={dropMenuOpen}>
-                <DropMenuItem>Accounting</DropMenuItem>
-                <DropMenuItem>Driver List</DropMenuItem>
-                <DropMenuItem>Documents</DropMenuItem>
+                <DropMenuItem to='/'>Accounting</DropMenuItem>
+                <DropMenuItem to='/driver-list'>Driver List</DropMenuItem>
+                <DropMenuItem to='#'>Documents</DropMenuItem>
             </DropMenu>
-            <MenuItem>Preformance</MenuItem>
+            <MenuItem to="#">Preformance</MenuItem>
             <Label>Quick Links</Label>
             <QuickLink>TRIUMPH</QuickLink>
             <QuickLink>EzCOI</QuickLink>

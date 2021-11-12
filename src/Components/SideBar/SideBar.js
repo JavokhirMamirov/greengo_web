@@ -1,5 +1,7 @@
 import styled from "styled-components";
-
+import {
+    Link
+    } from 'react-router-dom'
 export const  Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -9,7 +11,7 @@ export const  Container = styled.div`
     height: 100%;
 `;
 
-export const MenuItem = styled.a`
+export const MenuItem = styled(Link)`
     text-decoration: none;
     font-size: 16px;
     cursor: pointer;
@@ -31,7 +33,7 @@ export const DropMenu = styled.div`
 
 `;
 
-export const DropMenuItem = styled.a`
+export const DropMenuItem = styled(Link)`
     text-decoration: none;
     font-size: 14px;
     cursor: pointer;
