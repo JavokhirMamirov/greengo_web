@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, SingWindow,LeftSide, RightSide, Title, SubTitle,TitleSn, Input, Label, Form, SubmitBtn } from './SignIn';
 import { MdPersonOutline,MdOutlineLock } from 'react-icons/md';
+import Swal from 'sweetalert2'
+const SignInHandler = (username, password, setLogedIn) =>{
+    console.log(username, password);
+    if (username === "root" && password === "1"){
+        setLogedIn(true);
+    }else{
+        Swal.fire({  
+            title: 'Error!',  
+            text: 'Username or password error.',
+            icon: 'error'
+          }); 
+    }
+}
 
-const SignIn = () =>{
+
+const SignIn = ({setLogedIn}) =>{
+    const [username, setUsername] = useState(null);
+    const [password, setPassword] = useState(null);
     return (
         <Container>
             <SingWindow>
@@ -15,11 +31,11 @@ const SignIn = () =>{
                     <Form>
                         <Label>Username</Label>
                         <MdPersonOutline size={24} style={{position:"absolute", color:"#666666", marginTop:"32px", marginLeft:"3px"}} />
-                        <Input type="text" placeholder="Username"/>
+                        <Input type="text" onChange={username => setUsername(username.target.value)} placeholder="Username"/>
                         <Label>Password</Label>
                         <MdOutlineLock size={24} style={{position:"absolute", color:"#666666", marginTop:"102px", marginLeft:"3px"}} />
-                        <Input type="password" placeholder="Password"/>
-                        <SubmitBtn>Sign In</SubmitBtn>
+                        <Input type="password" onChange={password => setPassword(password.target.value)} placeholder="Password"/>
+                        <SubmitBtn onClick={()=>SignInHandler(username, password, setLogedIn)}>Sign In</SubmitBtn>
                     </Form>
                 </RightSide>
             </SingWindow>

@@ -26,7 +26,7 @@ function App() {
           </Routes>
       </Container>
       </>
-      :<SignIn/>
+      :<SignIn setLogedIn={setLogedIn}/>
     }
     </Router>
   );
