@@ -1,22 +1,23 @@
 import React from 'react'
 import { Container } from '../DriverList/DriverListStyle';
 import "../DriverList/styles.css";
-const OperatorListPanel = ()=>{
+const OperatorListPanel = ({data})=>{
+    console.log(data);
     return(
         <Container>
             <table>
                 <tr>
+                    <th>Index</th>
                     <th>Operator Name</th>
-                    <th>Phone number</th>
-                    <th>Email</th>
                     <th>Status</th>
                 </tr>
-                <tr>
-                    <td>John Tairov</td>
-                    <td>267-235-4255</td>
-                    <td>JohnSmith@gmail.com</td>
-                    <td>Active</td>
+                {data.map((operator, index)=>(
+                <tr key={index}>
+                    <td>{index+1}</td>
+                    <td>{operator.name}</td>
+                    <td>{operator.is_active? "Active":"Deactive"}</td>
                 </tr>
+                ))}
             </table>
         </Container>
 

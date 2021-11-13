@@ -9,13 +9,19 @@ import Dashboard from './Pages/Dashboard';
 import Invoice from './Pages/Invoice';
 import DriverList from './Pages/DriverList';
 import SignIn from './Components/SignIn';
+
+function getToken(){
+  const token = sessionStorage.getItem('token')
+  return token?token:null
+}
+
 function App() {
-  const [logedIn, setLogedIn] = useState(false);
+  const [token, setToken] = useState(getToken());
+  if(!token){
+    return <SignIn setToken={setToken}/>
+  }
   return (
     <Router>
-    {
-      logedIn === true ?
-      <>
       <TopBar/>
       <Container>
         <SideBar/>
@@ -25,9 +31,6 @@ function App() {
           <Route  path="/driver-list" element={<DriverList/>} />
           </Routes>
       </Container>
-      </>
-      :<SignIn setLogedIn={setLogedIn}/>
-    }
     </Router>
   );
 }

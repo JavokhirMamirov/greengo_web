@@ -1,7 +1,8 @@
 import React from 'react'
 import { Container } from './DriverListStyle';
 import "./styles.css"
-const DriverListPanel = ()=>{
+
+const DriverListPanel = ({data})=>{
     return(
         <Container>
             <table>
@@ -13,14 +14,17 @@ const DriverListPanel = ()=>{
                     <th>Email</th>
                     <th>Status</th>
                 </tr>
-                <tr>
-                    <td>101</td>
-                    <td>John Tairov</td>
-                    <td>Clifford Smith</td>
-                    <td>267-235-4255</td>
-                    <td>JohnSmith@gmail.com</td>
-                    <td>Active</td>
-                </tr>
+                {data.map((driver, index)=>(
+                    <tr key={index}>
+                        <td>{driver.track_number}</td>
+                        <td>{driver.owner?.name}</td>
+                        <td>{driver.name}</td>
+                        <td>{driver.phone}</td>
+                        <td>{driver.email}</td>
+                        <td>{driver.is_active?"Active":"Deactive"}</td>
+                    </tr>
+                ))}
+                
             </table>
         </Container>
 

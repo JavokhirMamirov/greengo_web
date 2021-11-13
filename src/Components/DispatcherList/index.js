@@ -1,26 +1,22 @@
 import React from 'react'
 import { Container } from '../DriverList/DriverListStyle';
 import "../DriverList/styles.css";
-const DispatcherListPanel = ()=>{
+const DispatcherListPanel = ({data})=>{
     return(
         <Container>
             <table>
                 <tr>
-                    <th>Truck number</th>
-                    <th>Owner</th>
-                    <th>Driver name</th>
-                    <th>Phone number</th>
-                    <th>Email</th>
+                    <th>Index</th>
+                    <th>Dispatcher name</th>
                     <th>Status</th>
                 </tr>
-                <tr>
-                    <td>101</td>
-                    <td>John Tairov</td>
-                    <td>Clifford Smith</td>
-                    <td>267-235-4255</td>
-                    <td>JohnSmith@gmail.com</td>
-                    <td>Active</td>
+                {data.map((dispatcher, index)=>(
+                <tr key={index}>
+                    <td>{index+1}</td>
+                    <td>{dispatcher.name}</td>
+                    <td>{dispatcher.is_active? "Active":"Deactive"}</td>
                 </tr>
+                ))}
             </table>
         </Container>
 
