@@ -5,9 +5,9 @@ import DispatcherListPanel from '../DispatcherList';
 import OperatorListPanel from '../OperatorList';
 import SetUpDriverModal, { SetUpDispatcherModal, SetUpOperatorModal } from '../SetUpDriver';
 import { GetDispatchers, GetDrivers, GetOperators } from '../../api/requests';
+import api from '../../api/api';
 
-
-
+const token = sessionStorage.getItem('token')
 
 const StaffTab = () =>{
     const [tabItem, setTabItem] = useState('driver');
@@ -15,6 +15,40 @@ const StaffTab = () =>{
     const [drivers, setDrivers] = useState([])
     const [dispatchers, setDispatchers] = useState([])
     const [operators, setOperators] = useState([])
+
+    const SetUpDriver = async (data) =>{
+        const response = await api.post('/driver/',data,{
+            headers: {
+                'Authorization': `Token ${token}` 
+              }
+            })
+        if (response.data.success === true){
+            setDrivers([response.data.data, ...drivers])
+            setDriverModalOpen(false)
+        }
+    }
+    const SetUpDsp = async (data) =>{
+        const response = await api.post('/dispatcher/',data,{
+            headers: {
+                'Authorization': `Token ${token}` 
+              }
+            })
+        if (response.data.success === true){
+            setDispatchers([response.data.data, ...dispatchers])
+            setDriverModalOpen(false)
+        }
+    }
+    const SetUpOpr = async (data) =>{
+        const response = await api.post('/owner-operator/',data,{
+            headers: {
+                'Authorization': `Token ${token}` 
+              }
+            })
+        if (response.data.success === true){
+            setOperators([response.data.data, ...operators])
+            setDriverModalOpen(false)
+        }
+    }
 
     useEffect(() => {
         const get_drivers = async () =>{
@@ -60,11 +94,23 @@ const StaffTab = () =>{
             <PanelItem><OperatorListPanel data={operators}/></PanelItem>:null}
         </Panel>
         {tabItem === 'driver'?
-        <SetUpDriverModal showModal={driverModalOpen} setShowModal={setDriverModalOpen}/>:
+        <SetUpDriverModal 
+            showModal={driverModalOpen} 
+            setShowModal={setDriverModalOpen} 
+            SetUpDriver={SetUpDriver} 
+            owners={operators} />:
         tabItem === "dispatcher"?
-        <SetUpDispatcherModal showModal={driverModalOpen} setShowModal={setDriverModalOpen}/>:
+        <SetUpDispatcherModal 
+            showModal={driverModalOpen} 
+            setShowModal={setDriverModalOpen}
+            SetUpDsp={SetUpDsp}
+            />:
         tabItem === "operator"?
-        <SetUpOperatorModal showModal={driverModalOpen} setShowModal={setDriverModalOpen}/>:null}
+        <SetUpOperatorModal 
+            showModal={driverModalOpen} 
+            setShowModal={setDriverModalOpen}
+            SetUpOpr={SetUpOpr}
+            />:null}
     </Container>
     );
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import { Container } from '../DriverList/DriverListStyle';
 import "../DriverList/styles.css";
 const OperatorListPanel = ({data})=>{
-    console.log(data);
     return(
         <Container>
             <table>
