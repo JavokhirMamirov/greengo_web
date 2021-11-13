@@ -12,10 +12,10 @@ import SignIn from './Components/SignIn';
 function App() {
   const [logedIn, setLogedIn] = useState(false);
   return (
-    <>
+    <Router>
     {
       logedIn === true ?
-    <Router>
+      <>
       <TopBar/>
       <Container>
         <SideBar/>
@@ -25,9 +25,10 @@ function App() {
           <Route  path="/driver-list" element={<DriverList/>} />
           </Routes>
       </Container>
-    </Router>:<SignIn/>
+      </>
+      :<SignIn/>
     }
-    </>
+    </Router>
   );
 }
 
