@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import TopBar from './Components/TopBar';
@@ -8,8 +8,13 @@ import styled from 'styled-components';
 import Dashboard from './Pages/Dashboard';
 import Invoice from './Pages/Invoice';
 import DriverList from './Pages/DriverList';
+import SignIn from './Components/SignIn';
 function App() {
+  const [logedIn, setLogedIn] = useState(false);
   return (
+    <>
+    {
+      logedIn === true ?
     <Router>
       <TopBar/>
       <Container>
@@ -20,7 +25,9 @@ function App() {
           <Route  path="/driver-list" element={<DriverList/>} />
           </Routes>
       </Container>
-      </Router>
+    </Router>:<SignIn/>
+    }
+    </>
   );
 }
 
@@ -30,5 +37,5 @@ export default App;
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  height: 920px;
+  height: 100vh;
 `;
