@@ -5,8 +5,8 @@ import DriverListPanel from '../DriverList';
 import DispatcherListPanel from '../DispatcherList';
 import OperatorListPanel from '../OperatorList';
 import SetUpDriverModal, { SetUpDispatcherModal, SetUpOperatorModal } from '../SetUpDriver';
-import { GetDispatchers, GetDrivers, GetOperators } from '../../api/requests';
-import api from '../../api/api';
+import { GetDispatchers, GetDrivers, GetOperators } from '../../../api/requests';
+import api from '../../../api/api';
 
 const token = sessionStorage.getItem('token')
 

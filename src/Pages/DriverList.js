@@ -1,5 +1,5 @@
 import React from 'react'
-import StaffTab from '../Components/StaffTab';
+import StaffTab from '../Components/Carrier/StaffTab';
 const DriverList = () =>{
     return(
         <>
