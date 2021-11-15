@@ -1,8 +1,8 @@
 import React from 'react'
-import { Container } from './DriverListStyle';
+import { Container, ActiveSpan, DeactiveSpan, ActiveBtn, DeActiveBtn } from './DriverListStyle';
 import "./styles.css"
-
-const DriverListPanel = ({data})=>{
+import {MdClear,MdOutlineDone} from 'react-icons/md';
+const DriverListPanel = ({data, ChangeStatus})=>{
     return(
         <Container>
             <table>
@@ -13,6 +13,7 @@ const DriverListPanel = ({data})=>{
                     <th>Phone number</th>
                     <th>Email</th>
                     <th>Status</th>
+                    <th>Change Status</th>
                 </tr>
                 {data.map((driver, index)=>(
                     <tr key={index}>
@@ -21,7 +22,10 @@ const DriverListPanel = ({data})=>{
                         <td>{driver.name}</td>
                         <td>{driver.phone}</td>
                         <td>{driver.email}</td>
-                        <td>{driver.is_active?"Active":"Deactive"}</td>
+                        <td>{driver.is_active? <ActiveSpan>Active</ActiveSpan> :
+                        <DeactiveSpan>Deactive</DeactiveSpan>}</td>
+                        <td>{driver.is_active? <DeActiveBtn onClick={()=>ChangeStatus(driver.id, driver.name, false, 'driver')}><MdClear size={20}/></DeActiveBtn>:
+                        <ActiveBtn  onClick={()=>ChangeStatus(driver.id, driver.name, true, 'driver')}><MdOutlineDone size={20} /></ActiveBtn>  }</td>
                     </tr>
                 ))}
                 

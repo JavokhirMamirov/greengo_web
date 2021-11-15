@@ -1,3 +1,4 @@
+/* eslint-disable no-redeclare */
 import React, { useState, useEffect } from 'react'
 import { Container, Tab, TabItem, Panel, PanelItem, SetUpNew } from './StaffTab';
 import DriverListPanel from '../DriverList';
@@ -15,6 +16,42 @@ const StaffTab = () =>{
     const [drivers, setDrivers] = useState([])
     const [dispatchers, setDispatchers] = useState([])
     const [operators, setOperators] = useState([])
+
+
+    const ChangeStatus = async (id, name, status, type) =>{
+        if (type === "driver"){
+            var url = `/driver/${id}/`
+        }else if(type === "operator"){
+            var url = `/owner-operator/${id}/`
+        }else{
+            var url = `/dispatcher/${id}/`
+        }
+        const data = {
+            name:name,
+            is_active:status
+        }
+        const response = await api.put( url ,data,{
+            headers: {
+                'Authorization': `Token ${token}` 
+              }
+            })
+        if (response.data.success === true){
+            if (type === "driver"){
+                var index = drivers.findIndex(x => x.id === response.data.data.id)
+                drivers[index]=response.data.data;
+                setDrivers([...drivers])
+            }else if(type === "operator"){
+                var index = operators.findIndex(x => x.id === response.data.data.id)
+                operators[index]=response.data.data;
+                setOperators([ ...operators])
+            }else{
+                var index = dispatchers.findIndex(x => x.id === response.data.data.id)
+                dispatchers[index]=response.data.data;
+                setDispatchers([...dispatchers])
+            }
+        }
+
+    } 
 
     const SetUpDriver = async (data) =>{
         const response = await api.post('/driver/',data,{
@@ -88,10 +125,10 @@ const StaffTab = () =>{
         <Panel>
             {tabItem === 'driver'?
             <PanelItem>
-                <DriverListPanel data={drivers}/>
+                <DriverListPanel data={drivers}  ChangeStatus={ChangeStatus}/>
             </PanelItem>:tabItem === 'dispatcher'?
-            <PanelItem><DispatcherListPanel data={dispatchers}/></PanelItem>:tabItem === 'operator'? 
-            <PanelItem><OperatorListPanel data={operators}/></PanelItem>:null}
+            <PanelItem><DispatcherListPanel data={dispatchers}   ChangeStatus={ChangeStatus}/></PanelItem>:tabItem === 'operator'? 
+            <PanelItem><OperatorListPanel data={operators}   ChangeStatus={ChangeStatus}/></PanelItem>:null}
         </Panel>
         {tabItem === 'driver'?
         <SetUpDriverModal 
