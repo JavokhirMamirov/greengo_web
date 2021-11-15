@@ -50,7 +50,7 @@ export const Input = styled.input`
     height: 36px;
     font-size: 14px;
     outline: none;
-    padding: 0px 20px 0px 10px;
+    padding: 0px 2px 0px 10px;
     float: left;
     margin:0px 20px 10px 0px;
 `;

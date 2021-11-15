@@ -9,6 +9,12 @@ export const  Container = styled.div`
     min-width: 230px;
     background-color: #005951;
     height: 100%;
+    @media (max-width:968px){
+        position: absolute;
+        margin-top: 50px;
+        top:0;
+        display: ${props=>props.menuOpen === false? 'none':'flex'};
+    }
 `;
 
 export const MenuItem = styled(Link)`

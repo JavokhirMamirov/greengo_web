@@ -17,14 +17,15 @@ function getToken(){
 
 function App() {
   const [token, setToken] = useState(getToken());
+  const [menuOpen, setMenuOpen] = useState(false);
   if(!token){
     return <SignIn setToken={setToken}/>
   }
   return (
     <Router>
-      <TopBar/>
+      <TopBar setMenuOpen={setMenuOpen} menuOpen={menuOpen}/>
       <Container>
-        <SideBar/>
+        <SideBar menuOpen={menuOpen}/>
         <Routes>
           <Route exact path="/" element={<Dashboard/>} />
           <Route  path="/invoice" element={<Invoice/>} />

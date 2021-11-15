@@ -4,7 +4,7 @@ export const Container = styled.div`
     display: flex;
     width: 100%;
     flex-direction: column;
-    margin: 30px;
+    margin: 15px;
 `;
 
 export const Tab = styled.div`

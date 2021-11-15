@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import { Container,MenuItem, DropMenu, DropMenuItem,Label,QuickLink  } from './SideBar';
 
-const SideBar = () =>{
+const SideBar = ({menuOpen}) =>{
     const [dropMenuOpen, SetDropMenuOpen] = useState(true);
     return (
-        <Container>
+        <Container menuOpen={menuOpen}>
             <MenuItem  to='/'>Dashboard</MenuItem>
             <MenuItem to='/invoice'>Invoice</MenuItem>
             <MenuItem to='#'>Statements</MenuItem>

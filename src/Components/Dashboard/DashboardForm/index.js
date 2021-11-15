@@ -112,11 +112,11 @@ const DashBoardForm = () =>{
             </Form>
             <Form2>
                 <Input type="number" step="0.001" style={{width:"60px"}} placeholder="D-H"/>
-                <Autocomplete className="atocomplate"  onLoad={onLoad}>
+                <Autocomplete className="autocomplate"  onLoad={onLoad}>
                 <Input type="text" style={{width:"150px"}}  placeholder="Orign"/>
                 </Autocomplete>
                 <Input  type="number" step="0.001" style={{width:"70px"}}  placeholder="Millage"/>
-                <Autocomplete  className="atocomplate" onLoad={onLoad}>
+                <Autocomplete  className="autocomplate" onLoad={onLoad}>
                 <Input type="text" style={{width:"150px"}}  placeholder="Destination"/>
                 </Autocomplete>
                 <Input  type="number" step="0.001" style={{width:"100px"}}  placeholder="Trip Rate"/>

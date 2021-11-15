@@ -6,7 +6,7 @@ export const  Container = styled.div`
     height: 50px;
     background-color: #005951;
     align-items: center;
-    @media (max-width:768px){
+    @media (max-width:968px){
         justify-content: space-between;
     }
 `;
@@ -16,7 +16,7 @@ export const Text = styled.span`
     font-size: 16px;
     margin: 5px;
     padding-left: 40px;
-    @media (max-width:768px){
+    @media (max-width:968px){
         display: none;
     }
 `;
@@ -38,7 +38,7 @@ export const Toggle = styled.div`
         margin-bottom: 4px;
         border-radius: 5px;
     }
-    @media (max-width:768px){
+    @media (max-width:968px){
         display: flex;
         padding-right: 20px;
     }
