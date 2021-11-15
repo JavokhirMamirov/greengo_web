@@ -28,6 +28,19 @@ export async function GetDispatchers(active){
     }
 }
 
+export async function GetBoards(active){
+    const response = await api.get(active===true?'/board/?is_active=true':'/board/',{
+        headers: {
+            'Authorization': `Token ${token}` 
+          }
+        })
+    if(response.data.success===true){
+        return response.data.data
+    }else{
+        return []
+    }
+}
+
 export async function GetOperators(active){
     const response = await api.get(active===true?'/owner-operator/?is_active=true':'/owner-operator/',{
         headers: {
