@@ -1,10 +1,17 @@
 import React from 'react'
-import { Container } from './DashboardInvoice';
+import { Container, TopList, TextTop, Input } from './DashboardInvoice';
 
 const DashboardInvoice = () =>{
     return (
         <Container>
-            <h1>Invoice</h1>
+            <TopList>
+                <TextTop>Trip List</TextTop>
+                <Input type="text" placeholder="Search by ID, location, driver"/>
+                <span>Start</span>
+                <Input type="date"/>
+                <span>End</span>
+                <Input type="date"/>
+            </TopList>
         </Container>
     );
 }

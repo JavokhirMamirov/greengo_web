@@ -8,3 +8,21 @@ export const Container = styled.div`
     border-radius: 10px;
     margin: 15px;
 `;
+
+
+export const TopList = styled.div`
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    align-items: center;
+    height: 50px;
+`;
+
+export const TextTop = styled.span`
+    font-size: 18px;
+    color: #054a48;
+`;
+
+export const Input = styled.input`
+
+`;
