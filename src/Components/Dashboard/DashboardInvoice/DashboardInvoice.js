@@ -52,6 +52,9 @@ export const InvoiceContainer = styled.div`
     margin: 20px;
     height: 350px;
     overflow-y: scroll;
+    &::-webkit-scrollbar {
+    display: none;
+}
 `;
 
 export const BoardContainer = styled.div`

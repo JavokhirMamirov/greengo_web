@@ -1,17 +1,59 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import DashboardInvoice from '../Components/Dashboard/DashboardInvoice';
 import DriverActivity from '../Components/Dashboard/DriverActivity';
 import DashBoardTopBar from '../Components/Dashboard/TopBar';
-
+import { GetBoards, GetDispatchers, GetDrivers, GetOperators } from '../api/requests';
 
 const Dashboard = () =>{
+    const [drivers, setDrivers] = useState([])
+    const [dispatchers, setDispatchers] = useState([])
+    const [operators, setOperators] = useState([])
+    const [boards, setBoards] = useState([])
+    useEffect(() => {
+        const get_drivers = async () =>{
+            const res_dr = await GetDrivers(true);
+            setDrivers(res_dr);
+        }
+        get_drivers();
+        
+    }, [])
+    useEffect(() => {
+        const get_boards = async () =>{
+            const res_br = await GetBoards(true);
+            setBoards(res_br);
+        }
+        get_boards();
+        
+    }, [])
+
+    useEffect(() => {
+        const get_dispatchers = async () =>{
+            const res_dp = await GetDispatchers(true);
+            setDispatchers(res_dp);
+        }
+        get_dispatchers();
+        
+    }, [])
+
+    useEffect(() => {
+        const get_operators = async () =>{
+            const res_op = await GetOperators(true);
+            setOperators(res_op);
+        }
+        get_operators();
+        
+    }, [])
     return(
         <Container>
-            <DashBoardTopBar/>
+            <DashBoardTopBar
+                drivers={drivers} 
+                dispatchers={dispatchers} 
+                operators={operators} boards={boards}
+            />
             <ContentDiv>
                 <DashboardInvoice/>
-                <DriverActivity/>
+                <DriverActivity drivers={drivers}/>
             </ContentDiv>
         </Container>
     );
