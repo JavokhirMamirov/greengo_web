@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 100%;
-    max-height: 500px;
     box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
     background: #fff;
     border-radius: 10px;
@@ -48,6 +47,27 @@ export const DateInput = styled.input`
 `;
 
 export const InvoiceContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    height: 350px;
+    overflow-y: scroll;
+`;
+
+export const BoardContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+    border-bottom: 1px solid #cccccc;
+`;
+
+export const BoardText = styled.span`
+    font-size: 18px;
+    color: #054a48;
+    margin-bottom: 7px;
+`;
+export const TotalDataContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin: 20px;
