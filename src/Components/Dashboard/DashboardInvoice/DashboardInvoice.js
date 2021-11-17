@@ -27,7 +27,7 @@ export const Input = styled.input`
     outline: none;
     height: 32px;
     margin-left: 30px;
-    width: 250px;
+    width: 200px;
     font-size: 14px;
     padding-right: 25px;
 `;
@@ -44,6 +44,7 @@ export const DateInput = styled.input`
     outline: none;
     margin-right: 10px;
     font-size: 14px;
+    width: 130px;
 `;
 
 export const InvoiceContainer = styled.div`

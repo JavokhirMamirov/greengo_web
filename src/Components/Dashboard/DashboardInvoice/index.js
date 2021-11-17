@@ -61,7 +61,7 @@ const DashboardInvoice = () =>{
         <Container>
             <TopList>
                 <TextTop>Trip List</TextTop>
-                <MdOutlineSearch size={20} style={{position:'absolute', marginLeft:"350px"}} color="#979999" />
+                <MdOutlineSearch size={20} style={{position:'absolute', marginLeft:"300px"}} color="#979999" />
                 <Input type="text" placeholder="Search by ID, location, driver"  onChange={v => onChageSearch(v.target.value)}/>
                 <div style={{marginLeft:"auto"}}>
                     <DateText>Start:</DateText>
