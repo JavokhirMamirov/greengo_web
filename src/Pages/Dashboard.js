@@ -77,4 +77,7 @@ const ContentDiv = styled.div`
     display: grid;
     grid-template-columns: 2fr 1fr;
     column-gap:20px;
+    @media (max-width:1320px){
+        grid-template-columns: 1fr;
+    }
 `;

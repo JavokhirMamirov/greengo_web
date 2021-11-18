@@ -32,6 +32,9 @@ export const TrakNumber = styled.span`
     color: #626262;
     background-color: #cecece;
     padding: 10px;
+    @media (max-width:1500px){
+        font-size: 16px;
+    }
 `;
 
 export const LocationContainer = styled.div`
@@ -43,11 +46,17 @@ export const LocationContainer = styled.div`
 export const LocationSpan = styled.span`
     font-size: 18px;
     color:#054a48;
+    @media (max-width:1500px){
+        font-size: 16px;
+    }
 `;
 
 export const LocationDateSpan = styled.span`
     font-size: 14px;
     color:#979999;
+    @media (max-width:1500px){
+        font-size: 12px;
+    }
 `;
 
 export const PdfSpan = styled.span`
@@ -55,14 +64,24 @@ export const PdfSpan = styled.span`
     color: ${props=>props.color};
     text-align:center;
     margin-left: 15px;
+    @media (max-width:1500px){
+        font-size: 16px;
+    }
 `;
 
 export const Mile = styled.span`
     font-size: 18px;
     color: #666666;
+    @media (max-width:1500px){
+        font-size: 16px;
+    }
 `;
 
 export const TripRateSpan = styled.span`
     font-size: 18px;
     color: #005952;
+    margin-left: 10px;
+    @media (max-width:1500px){
+        font-size: 16px;
+    }
 `;

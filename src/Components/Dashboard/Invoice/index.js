@@ -37,8 +37,8 @@ const InvoiceItem = (props) =>{
                     <Mile>{props.invoice.milage}mi</Mile>
                     <LocationDateSpan>Total miles</LocationDateSpan>
                 </div>
-                <TripRateSpan>{props.invoice.trip_rate}$ |</TripRateSpan>
-                <LocationDateSpan style={{marginLeft:"15px"}}>3.36$/mi</LocationDateSpan>
+                <TripRateSpan>{props.invoice.trip_rate}$|</TripRateSpan>
+                <LocationDateSpan style={{marginLeft:"5px"}}>3.36$/mi</LocationDateSpan>
 
             </MidleContainer>
         </Container>
