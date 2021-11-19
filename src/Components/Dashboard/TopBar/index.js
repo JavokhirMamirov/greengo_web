@@ -3,7 +3,7 @@ import DashBoardForm from '../DashboardForm';
 import { Container, Panel, Tab, TabItem, TimeText } from './DashboardTopBar';
 
 
-const DashBoardTopBar = ({drivers, dispatchers, operators, boards}) =>{
+const DashBoardTopBar = ({drivers, dispatchers, operators, boards,SetUpInvoice}) =>{
     const [tabItem, setTabItem] = useState('new_trip');
     return (
         <Container>
@@ -17,6 +17,7 @@ const DashBoardTopBar = ({drivers, dispatchers, operators, boards}) =>{
             drivers={drivers} 
             dispatchers={dispatchers} 
             operators={operators} boards={boards}
+            SetUpInvoice={SetUpInvoice}
             />
         </Panel>
         </Container>

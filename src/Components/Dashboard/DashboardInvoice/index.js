@@ -8,21 +8,12 @@ import { useState } from 'react/cjs/react.development';
 
 
 
-const DashboardInvoice = () =>{
-    const [invoices, setInvoices] = useState([]);
+const DashboardInvoice = ({invoices, setInvoices}) =>{
+    
     const [dateStart, setDateStart] = useState('');
     const [search, setSearch] = useState('');
     const [dateEnd, setDateEnd] = useState('');
-    useEffect(() => {
-        const get_invoices = async (filter={}) =>{
-            const res_dr = await GetInvoices(filter);
-            console.log(res_dr);
-            setInvoices(res_dr);
-        }
-        get_invoices();
-        
-        
-    }, [])
+    
     const get_invoiceFilter = async(filter)=>{
         const res_dr = await GetInvoices(filter);
         setInvoices(res_dr);

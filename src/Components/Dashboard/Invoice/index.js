@@ -6,7 +6,7 @@ import { Container,LocationContainer,LocationDateSpan,LocationSpan,MidleContaine
 
 const InvoiceItem = (props) =>{
     return (
-        <Container attached={props.invoice.documents === []?false:true}>
+        <Container attached={props.invoice.documents.length <= 0?false:true}>
             <TopData>
                 <SpanTop>Dispatcher: {props.invoice.dispatcher.name}</SpanTop>
                 <SpanTop>Board: {props.invoice.board.name}</SpanTop>
@@ -26,7 +26,7 @@ const InvoiceItem = (props) =>{
                     <LocationSpan>{props.invoice.destination}</LocationSpan>
                     <LocationDateSpan>{props.invoice.date_end} EDT</LocationDateSpan>
                 </LocationContainer>
-                {props.invoice.documents === []?
+                {props.invoice.documents.length <= 0?
                 <div style={{display:'flex', flexDirection:'column'}}>
                 <PdfSpan color="#bb1d3b">NO PDF</PdfSpan>
                 <PdfSpan color="#bb1d3b">ATTACHED</PdfSpan></div>:

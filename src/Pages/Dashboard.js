@@ -3,13 +3,42 @@ import styled from 'styled-components';
 import DashboardInvoice from '../Components/Dashboard/DashboardInvoice';
 import DriverActivity from '../Components/Dashboard/DriverActivity';
 import DashBoardTopBar from '../Components/Dashboard/TopBar';
-import { GetBoards, GetDispatchers, GetDrivers, GetOperators } from '../api/requests';
-
+import { GetBoards, GetDispatchers, GetDrivers, GetInvoices, GetOperators } from '../api/requests';
+import api from '../api/api';
+const token = sessionStorage.getItem('token')
 const Dashboard = () =>{
     const [drivers, setDrivers] = useState([])
     const [dispatchers, setDispatchers] = useState([])
     const [operators, setOperators] = useState([])
     const [boards, setBoards] = useState([])
+    const [invoices, setInvoices] = useState([]);
+
+    const SetUpInvoice = async(invoice_data)=>{
+        const response = await api.post('/invoice/', invoice_data,{
+            headers: {
+                'Authorization': `Token ${token}` 
+              }
+        })
+        if (response.data.success === true){
+            get_invoices();
+        }else{
+            console.log(response.data);
+        }
+    }
+
+    const get_invoices = async (filter={}) =>{
+        const res_dr = await GetInvoices(filter);
+        setInvoices(res_dr);
+    }
+
+    useEffect(() => {
+        
+        get_invoices();
+        
+        
+    }, [])
+    
+
     useEffect(() => {
         const get_drivers = async () =>{
             const res_dr = await GetDrivers(true);
@@ -50,9 +79,10 @@ const Dashboard = () =>{
                 drivers={drivers} 
                 dispatchers={dispatchers} 
                 operators={operators} boards={boards}
+                SetUpInvoice={SetUpInvoice}
             />
             <ContentDiv>
-                <DashboardInvoice/>
+                <DashboardInvoice invoices={invoices} setInvoices={setInvoices}/>
                 <DriverActivity drivers={drivers}/>
             </ContentDiv>
         </Container>
