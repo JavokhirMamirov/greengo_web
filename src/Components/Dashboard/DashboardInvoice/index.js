@@ -4,6 +4,7 @@ import {MdOutlineSearch} from 'react-icons/md'
 import InvoiceItem from '../Invoice';
 import { GetInvoices } from '../../../api/requests';
 import { useState } from 'react/cjs/react.development';
+import { InvoiceModal } from '../InvoiceModal';
 
 
 
@@ -13,6 +14,7 @@ const DashboardInvoice = ({invoices, setInvoices}) =>{
     const [dateStart, setDateStart] = useState('');
     const [search, setSearch] = useState('');
     const [dateEnd, setDateEnd] = useState('');
+    const [openInvoiceModal, setOpenInvoiceModal] = useState(false);
     
     const get_invoiceFilter = async(filter)=>{
         const res_dr = await GetInvoices(filter);
@@ -63,7 +65,7 @@ const DashboardInvoice = ({invoices, setInvoices}) =>{
             </TopList>
             <InvoiceContainer>
                 {invoices.data !== undefined?invoices.data.map((invoice, index)=>(
-                    <InvoiceItem key={index} invoice={invoice}/>
+                    <InvoiceItem key={index} invoice={invoice} onClick={()=>setOpenInvoiceModal(true)} />
                 )):null}
             </InvoiceContainer>
             <BoardContainer>
@@ -77,6 +79,7 @@ const DashboardInvoice = ({invoices, setInvoices}) =>{
                 <BoardText>Total milies: {invoices.total_miles}</BoardText>
                 <BoardText>Avrage: {invoices.total_average}$/per mile</BoardText>
             </TotalDataContainer>
+            <InvoiceModal setShowModal={setOpenInvoiceModal} showModal={openInvoiceModal}/>
         </Container>
     );
 }

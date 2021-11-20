@@ -15,7 +15,7 @@ const InvoiceItem = (props) =>{
     }
 
     return (
-        <Container attached={props.invoice.documents.length <= 0?false:true}>
+        <Container attached={props.invoice.documents.length <= 0?false:true} onClick={props.onClick}>
             <TopData>
                 <SpanTop>Dispatcher: {props.invoice.dispatcher.name}</SpanTop>
                 <SpanTop>Board: {props.invoice.board.name}</SpanTop>
