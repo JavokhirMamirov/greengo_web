@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import { Container, CoverBtn, Day, Form, Form2, Input, Month, Option, Select, TextDiv, Title, Today, Weekday } from './DashboardForm';
 import { Autocomplete } from '@react-google-maps/api';
+import PlacesAutocomplete from '../PlacesAutoComplate';
 
 
 
@@ -15,16 +17,16 @@ const DashBoardForm = ({drivers, dispatchers, operators, boards, SetUpInvoice}) 
     const [board, setBoard] = useState(null);
     const [owner, setOwner] = useState(null);
     const [driver, setDriver] = useState(null);
-    const [dh, setDh] = useState(null);
+    const [dh, setDh] = useState('');
     const [origin, setOrigin] = useState('');
-    const [milage, setMilage] = useState(null);
+    const [milage, setMilage] = useState('');
     const [destination, setDestination] = useState('');
-    const [trip_rate, setTrip_rate] = useState(null);
+    const [trip_rate, setTrip_rate] = useState('');
     const [notes, setNotes] = useState('');
     const [date_end, setDate_end] = useState('');
-    const [status, setStatus] = useState(null);
+    // const [status, setStatus] = useState(null);
 
-
+    console.log(React.version);
     const onLoad = (autoC) => setAutocomplate(autoC);
 
     const DriverOnChange = (id) =>{
@@ -36,10 +38,14 @@ const DashBoardForm = ({drivers, dispatchers, operators, boards, SetUpInvoice}) 
         }
         setDriver(id)
     }
+
+    const onPlaceChanged = (data) => {
+        console.log(data);
+    }
     const SetUp = () =>{
         if (dispatcher !== null && board !== null && owner !== null && driver !== null 
-            && dh !== null && origin !== '' && milage !== null && destination !== ''&&
-            trip_rate !== null && date_end !== ''
+            && dh !== '' && origin !== '' && milage !== '' && destination !== ''&&
+            trip_rate !== '' && date_end !== ''
             ){  
                 let invoice_data = {
                     dispatcher:dispatcher,
@@ -56,6 +62,18 @@ const DashBoardForm = ({drivers, dispatchers, operators, boards, SetUpInvoice}) 
                     status:1
                 }
                 SetUpInvoice(invoice_data)
+                setDriver(null)
+                setDispatcher(null)
+                setDriverData(null)
+                setBoard(null)
+                setOwner(null)
+                setDh('')
+                setOrigin('')
+                setMilage('')
+                setDestination('')
+                setTrip_rate('')
+                setNotes('')
+                setDate_end('')
 
             }else{
                 alert('one of the fields is left blank')
@@ -71,26 +89,26 @@ const DashBoardForm = ({drivers, dispatchers, operators, boards, SetUpInvoice}) 
             <div style={{display:"flex", flexDirection:'column'}}>
             <Form>
                 <Select onChange={v=>setDispatcher(v.target.value)}>
-                    <Option value={null}>Dispatcher name</Option>
+                    <Option value={null}  selected={dispatcher === null? "selected":null}  >Dispatcher name</Option>
                     {dispatchers.map((dispatcher, index)=>(
                         <Option key={index} value={dispatcher.id}>{dispatcher.name}</Option>
                     ))}
                     
                 </Select>
                 <Select  onChange={v=>setBoard(v.target.value)}>
-                    <Option value={null}>Board</Option>
+                    <Option  selected={board === null? "selected":null}   value={null}>Board</Option>
                     {boards.map((board, index)=>(
                         <Option key={index} value={board.id}>{board.name}</Option>
                     ))}
                 </Select>
                 <Select  onChange={v=>setOwner(v.target.value)}>
-                    <Option value={null}>Owner operator</Option>
+                    <Option value={null}  selected={owner === null? "selected":null}  >Owner operator</Option>
                     {operators.map((operator, index)=>(
                         <Option key={index} value={operator.id}>{operator.name}</Option>
                     ))}
                 </Select>
                 <Select onChange={v=>DriverOnChange(v.target.value)}>
-                    <Option value={null} >Driver name</Option>
+                    <Option value={null} selected={driver === null? "selected":null}  >Driver name</Option>
                     {drivers.map((driver, index)=>(
                         <Option key={index} value={driver.id}>{driver.name}</Option>
                     ))}
@@ -107,28 +125,23 @@ const DashBoardForm = ({drivers, dispatchers, operators, boards, SetUpInvoice}) 
                     <Title>Trailer number</Title>
                     <Title>{driverData?.trailer_number}</Title>
                 </TextDiv>
-                <Input type="number" step="0.001" 
-                 onChange={v=>setDh(v.target.value)}
-                style={{width:"60px"}} placeholder="D-H"/>
+                <Input type="number" step="0.01" value={dh}
+                    onChange={v=>setDh(v.target.value)}
+                    style={{width:"60px"}} placeholder="D-H"
+                    />
             </Form>
             <Form2>
                 
-                <Autocomplete className="autocomplate"  onLoad={onLoad}>
-                <Input type="text"  onKeyUp={v=>setOrigin(v.target.value)}
-                style={{width:"150px"}}  placeholder="Orign"/>
-                </Autocomplete>
-                <Input  type="number" step="0.001"  onChange={v=>setMilage(v.target.value)}
-                style={{width:"70px"}}  placeholder="Millage"/>
-                <Autocomplete  className="autocomplate" onLoad={onLoad}>
-                <Input type="text"  onKeyUp={v=>setDestination(v.target.value)}
-                style={{width:"150px"}}  placeholder="Destination"/>
-                </Autocomplete>
-                <Input  type="number" step="0.001"  onChange={v=>setTrip_rate(v.target.value)}
+                <PlacesAutocomplete onChange={setOrigin} placeholder="Origin" value2={origin}/>
+                <Input  type="number" step="0.01"  onChange={v=>setMilage(v.target.value)}
+                style={{width:"70px"}} value={milage} placeholder="Millage"/>
+                <PlacesAutocomplete onChange={setDestination} placeholder="Destination" value2={destination}/>
+                <Input  type="number" step="0.01" value={trip_rate}  onChange={v=>setTrip_rate(v.target.value)}
                 style={{width:"100px"}}  placeholder="Trip Rate"/>
-                <Input type="datetime-local"  onChange={v=>setDate_end(v.target.value)}
+                <Input type="datetime-local" value={date_end}  onChange={v=>setDate_end(v.target.value)}
                 style={{width:"210px"}}  placeholder='Delivery date & time'/>
                 <Input type="text" style={{width:"150px"}} onChange={v=>setNotes(v.target.value)}
-                  placeholder='Special Notes'/>
+                  placeholder='Special Notes'  value={notes}/>
                 <CoverBtn onClick={()=>SetUp()}>Cover</CoverBtn>
             </Form2>
             </div>

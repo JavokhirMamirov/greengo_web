@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import DashBoardForm from '../DashboardForm';
 import { Container, Panel, Tab, TabItem, TimeText } from './DashboardTopBar';

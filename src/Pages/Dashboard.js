@@ -26,7 +26,14 @@ const Dashboard = () =>{
         }
     }
 
-    const get_invoices = async (filter={}) =>{
+    const get_invoices = async () =>{
+        var date = new Date();
+        var dateStart = new Date(date.getFullYear(), date.getMonth(), date.getDate()-3)
+        var dateEnd = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+        var filter = {
+            date__gte:dateStart !== ''? `${dateStart.getFullYear()}-${dateStart.getMonth()+1}-${dateStart.getDate()} 00:00`:null,
+            date__lte:dateEnd !== ''? `${dateEnd.getFullYear()}-${dateEnd.getMonth()+1}-${dateEnd.getDate()} 23:59`:null,
+        }
         const res_dr = await GetInvoices(filter);
         setInvoices(res_dr);
     }
