@@ -1,10 +1,19 @@
 import React from 'react'
 import { MdComment, MdOutlineMultipleStop } from 'react-icons/md';
 import { Container,LocationContainer,LocationDateSpan,LocationSpan,MidleContainer,Mile,PdfSpan,SpanTop,TopData, TrakNumber, TripRateSpan } from './Invoice';
-
+import Swal from 'sweetalert2'
 
 
 const InvoiceItem = (props) =>{
+
+    const get_message = (message) => {
+        Swal.fire({  
+            title: 'Notes!',  
+            text:message,
+            icon: 'info'
+          }); 
+    }
+
     return (
         <Container attached={props.invoice.documents.length <= 0?false:true}>
             <TopData>
@@ -13,7 +22,7 @@ const InvoiceItem = (props) =>{
                 <SpanTop>Owner: {props.invoice.owner.name}</SpanTop>
                 <SpanTop>Driver: {props.invoice.driver.name}</SpanTop>
                 {props.invoice.notes !== ""?
-                <MdComment size={20} style={{marginLeft:'auto', marginRight:"10px"}} color="#006565"/>:null}
+                <MdComment size={20} style={{marginLeft:'auto', marginRight:"10px", cursor:'pointer'}} onClick={()=>get_message(props.invoice.notes)} color="#006565"/>:null}
             </TopData>
             <MidleContainer>
                 <TrakNumber>{props.invoice.driver.track_number}</TrakNumber>
