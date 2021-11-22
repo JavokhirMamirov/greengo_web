@@ -67,6 +67,8 @@ const DashboardInvoice = ({invoices, setInvoices, invoiceFilter, setInvoiceFilte
         }
     }
 
+
+
     return (
         <Container>
             <TopList>
@@ -96,7 +98,8 @@ const DashboardInvoice = ({invoices, setInvoices, invoiceFilter, setInvoiceFilte
                 <BoardText>Total milies: {invoices.total_miles}</BoardText>
                 <BoardText>Avrage: {invoices.total_average}$/per mile</BoardText>
             </TotalDataContainer>
-            <InvoiceModal setShowModal={setOpenInvoiceModal} showModal={openInvoiceModal} invoice={modalInvoiceData} deleteInvoice={deleteInvoice}/>
+            <InvoiceModal setShowModal={setOpenInvoiceModal} showModal={openInvoiceModal} 
+            invoice={modalInvoiceData} deleteInvoice={deleteInvoice} setInvoice={setModalInvoiceData} />
         </Container>
     );
 }

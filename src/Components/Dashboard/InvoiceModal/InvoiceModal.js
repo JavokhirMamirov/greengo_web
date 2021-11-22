@@ -16,6 +16,17 @@ export const Background = styled.div`
     align-items: center;
 `;
 
+export const DocumentContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    height: 70px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-bottom: 1px solid #005951;
+    justify-content: start;
+    align-items: center;
+`;
+
 export const TopBar = styled.div`
     display: flex;
     flex-direction: row;
@@ -26,6 +37,42 @@ export const TopBar = styled.div`
     border-top-right-radius:9px;
     align-items: center;
     justify-content: end;
+`;
+
+export const UploadFile = styled.div`
+    display: flex;
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+`;
+
+export const FileInput = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #005951;
+    cursor: pointer;
+`;
+
+export const FilesLink = styled.a`
+    cursor: pointer;
+`;
+
+export const File = styled.img`
+    width: 40px;
+    height: 50px;
+`;
+
+export const FilesContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    justify-content: start;
+    align-items: center; 
 `;
 
 export const InvoiceContainer = styled.div`

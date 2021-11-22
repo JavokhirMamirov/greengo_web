@@ -1,12 +1,19 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import { useSpring, animated } from 'react-spring';
-import { Background, Button, DriverContainer, ModalContent, ModalWrapper, Title, TopBar, TruckContainer,InvoiceContainer, Text, LocationContainer, SubText, DetailContainer, DetailItem, DetailText, BottomContainer } from './InvoiceModal';
-import { MdOutlineLocalShipping, MdPersonOutline, MdOutlineLocationOn, MdClose } from "react-icons/md";
+import { Background, Button, DriverContainer, ModalContent, ModalWrapper, Title, TopBar,
+  TruckContainer,InvoiceContainer, Text, LocationContainer, SubText, DetailContainer, DetailItem, DetailText, BottomContainer, DocumentContainer, FileInput, FilesContainer, FilesLink, File, UploadFile } from './InvoiceModal';
+import { MdOutlineLocalShipping, MdPersonOutline, MdOutlineLocationOn, MdClose, MdUploadFile, MdDone, MdRestoreFromTrash } from "react-icons/md";
+import { useState } from 'react/cjs/react.development';
+import api from '../../../api/api';
+const token = sessionStorage.getItem('token')
 
 
-export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice}){
+
+export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice,setInvoice}){
   const modalRef = useRef();
-
+  const fileInputRef = useRef();
+  const [documentShow, setDocumentShow] = useState(false);
+  const [file, setFile] = useState(null);
   const animation = useSpring({
     config: {
       duration: 250
@@ -52,6 +59,51 @@ export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice}
     deleteInvoice(id);
     setShowModal(false);
   }
+
+  const handleFileUpload = event => {
+    setFile(event.target.files[0])
+  };
+
+  const delete_pdf = async(file_id)=>{
+    console.log(file_id);
+    var formdata = new FormData();
+    formdata.append("file_id", file_id);
+    formdata.append("invoice_id", invoice.id);
+    const response = await api.post('/delete-pdf-file/',formdata)
+    console.log(response);
+    if(response.success === true){
+      let a = []
+      for (let dc of invoice.documents){
+        if (dc.id !== response.data.file_id){
+          a.push(dc)
+        } 
+      }
+      invoice.documents = a
+      setInvoice(invoice)
+    }
+  }
+
+  const UploadDocument = async (id) =>{
+    if (file !== null){
+        let formData = new FormData();
+        formData.append("file", file);
+        formData.append("invoice_id", id);
+        const response = await api.post('/pdf-file/', formData,{
+          headers:{
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Token ${token}` 
+          }
+        }) 
+        if (response.success === true){
+          setFile(null)
+          invoice.documents=[response.data, ...invoice.documents]
+          setInvoice(invoice)
+        }
+    }
+    
+  }
+
+
   return (
     <>
       {showModal ? (
@@ -98,12 +150,41 @@ export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice}
                   </InvoiceContainer>
                   <DetailContainer>
                         <DetailItem>
-                            <DetailText style={{cursor:'pointer'}}>View Docs</DetailText>
-                            {invoice.documents.length > 0?
+                            <DetailText style={{cursor:'pointer'}} onClick={()=>setDocumentShow(!documentShow)}>View Docs</DetailText>
+                            {invoice.documents?.length > 0?
                             <DetailText style={{color:"#32a852"}}>PDF attached</DetailText>:
                             <DetailText style={{color:"#a83232"}}>No PDF attached</DetailText>
                           }
                         </DetailItem>
+                        {documentShow === true?
+                        <DocumentContainer>
+                          <FileInput onClick={()=>fileInputRef.current.click()}>
+                            <MdUploadFile size={28} color="#005951"/>
+                            <span style={{color:"#005951", fontSize:"10px"}}>Upload</span>
+                            <input type="file" style={{display:'none'}} ref={fileInputRef} onChange={handleFileUpload}/>
+                          </FileInput>
+                          {file?
+                          <UploadFile>
+                            <div style={{display:'flex', flexDirection:'column'}}>
+                              <MdDone style={{cursor:'pointer'}} onClick={()=>UploadDocument(invoice.id)} color="#005951" size={20}/>
+                              <MdRestoreFromTrash onClick={()=>setFile(null)}  style={{cursor:'pointer', marginTop:"5px"}} color="red" size={20}/>
+                            </div>
+                            <File  src="/images/pdf.png" alt={file.name} title={file.name}/>
+                          </UploadFile>:null}
+                          <FilesContainer>
+                            {invoice.documents?.map((doc, index)=>(
+                              <UploadFile key={index}>
+                                <div style={{display:'flex'}}>
+                                <MdRestoreFromTrash onClick={()=>delete_pdf(doc.id)}  key={index} style={{cursor:'pointer'}} color="red" size={20}/>
+                                </div>
+                                <FilesLink href={doc.file} target="_blank">
+                                    <File src="/images/pdf.png" alt={doc.name} title={doc.name}/>
+                                </FilesLink>
+                              </UploadFile>
+                            ))}
+                            
+                          </FilesContainer>
+                        </DocumentContainer>:null}
                         <DetailItem>
                             <DetailText>Dispatcher Name</DetailText>
                             <DetailText>{invoice.dispatcher.name}</DetailText>
