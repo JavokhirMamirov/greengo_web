@@ -12,6 +12,7 @@ const Dashboard = () =>{
     const [operators, setOperators] = useState([])
     const [boards, setBoards] = useState([])
     const [invoices, setInvoices] = useState([]);
+    const [invoiceFilter, setInvoiceFilter] = useState({});
 
     const SetUpInvoice = async(invoice_data)=>{
         const response = await api.post('/invoice/', invoice_data,{
@@ -34,6 +35,7 @@ const Dashboard = () =>{
             date__gte:dateStart !== ''? `${dateStart.getFullYear()}-${dateStart.getMonth()+1}-${dateStart.getDate()} 00:00`:null,
             date__lte:dateEnd !== ''? `${dateEnd.getFullYear()}-${dateEnd.getMonth()+1}-${dateEnd.getDate()} 23:59`:null,
         }
+        setInvoiceFilter(filter);
         const res_dr = await GetInvoices(filter);
         setInvoices(res_dr);
     }
@@ -80,6 +82,8 @@ const Dashboard = () =>{
         get_operators();
         
     }, [])
+
+    
     return(
         <Container>
             <DashBoardTopBar
@@ -89,7 +93,7 @@ const Dashboard = () =>{
                 SetUpInvoice={SetUpInvoice}
             />
             <ContentDiv>
-                <DashboardInvoice invoices={invoices} setInvoices={setInvoices}/>
+                <DashboardInvoice invoices={invoices} setInvoices={setInvoices} setInvoiceFilter={setInvoiceFilter} invoiceFilter={invoiceFilter}/>
                 <DriverActivity drivers={drivers}/>
             </ContentDiv>
         </Container>

@@ -1,13 +1,8 @@
 /* eslint-disable no-redeclare */
 import api from "./api";
-const token = sessionStorage.getItem('token')
+
 export async function GetDrivers(active){
-    const response = await api.get(active===true?`/driver/?is_active=${true}`:`/driver/`,{
-    headers: {
-        'Authorization': `Token ${token}` 
-      }
-    }
-    )
+    const response = await api.get(active===true?`/driver/?is_active=${true}`:`/driver/`)
     if(response.data.success===true){
         return response.data.data
     }else{
@@ -17,11 +12,7 @@ export async function GetDrivers(active){
 
 
 export async function GetDispatchers(active){
-    const response = await api.get(active===true?'/dispatcher/?is_active=true':'/dispatcher/',{
-        headers: {
-            'Authorization': `Token ${token}` 
-          }
-        })
+    const response = await api.get(active===true?'/dispatcher/?is_active=true':'/dispatcher/')
     if(response.data.success===true){
         return response.data.data
     }else{
@@ -30,11 +21,7 @@ export async function GetDispatchers(active){
 }
 
 export async function GetBoards(active){
-    const response = await api.get(active===true?'/board/?is_active=true':'/board/',{
-        headers: {
-            'Authorization': `Token ${token}` 
-          }
-        })
+    const response = await api.get(active===true?'/board/?is_active=true':'/board/')
     if(response.data.success===true){
         return response.data.data
     }else{
@@ -43,11 +30,7 @@ export async function GetBoards(active){
 }
 
 export async function GetOperators(active){
-    const response = await api.get(active===true?'/owner-operator/?is_active=true':'/owner-operator/',{
-        headers: {
-            'Authorization': `Token ${token}` 
-          }
-        })
+    const response = await api.get(active===true?'/owner-operator/?is_active=true':'/owner-operator/')
     if(response.data.success===true){
         return response.data.data
     }else{
@@ -71,11 +54,7 @@ export async function GetInvoices(filter){
         }
         var url = `/invoice/?`+filter_url
     }
-    const response = await api.get(url,{
-        headers: {
-            'Authorization': `Token ${token}` 
-          }
-        })
+    const response = await api.get(url)
     if(response.data.success===true){
         return response.data
     }else{

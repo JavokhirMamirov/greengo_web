@@ -1,9 +1,10 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { Background, Button, DriverContainer, ModalContent, ModalWrapper, Title, TopBar, TruckContainer,InvoiceContainer, Text, LocationContainer, SubText, DetailContainer, DetailItem, DetailText, BottomContainer } from './InvoiceModal';
-import { MdOutlineLocalShipping, MdPersonOutline, MdOutlineLocationOn } from "react-icons/md";
+import { MdOutlineLocalShipping, MdPersonOutline, MdOutlineLocationOn, MdClose } from "react-icons/md";
 
-export function InvoiceModal ({ showModal, setShowModal}){
+
+export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice}){
   const modalRef = useRef();
 
   const animation = useSpring({
@@ -38,6 +39,19 @@ export function InvoiceModal ({ showModal, setShowModal}){
     [keyPress]
   );
 
+  const DateFormat=(date)=>{
+    const dt = new Date(date);
+    return dt.toUTCString();
+  }
+
+  const PerMileRate = (rate, dh, milage) =>{
+    return Number((parseFloat(rate)/(parseFloat(dh)+parseFloat(milage))).toFixed(2))
+  }
+
+  const Delete_Invoice=(id)=>{
+    deleteInvoice(id);
+    setShowModal(false);
+  }
   return (
     <>
       {showModal ? (
@@ -48,34 +62,35 @@ export function InvoiceModal ({ showModal, setShowModal}){
                   <TopBar>
                       <Title>Trip detail</Title>
                       <Button>Edit</Button>
-                      <Button>Remove</Button>
+                      <Button onClick={()=>Delete_Invoice(invoice.id)}>Remove</Button>
+                      <MdClose size={26} color="#fff" style={{marginRight:"10px", cursor:"pointer"}} onClick={()=>setShowModal(false)}/>
                   </TopBar>
                   <InvoiceContainer>
                         <TruckContainer>
                             <MdOutlineLocalShipping  color="white" size={32}/>
-                            <Text>Truck | 101</Text>
+                            <Text>Truck | {invoice.driver.track_number}</Text>
                         </TruckContainer>
                         <DriverContainer>
                             <MdPersonOutline  color="white" size={32}/>
-                            <Text>Truck | 101</Text>
+                            <Text>{invoice.driver.name}</Text>
                         </DriverContainer>
                         <LocationContainer>
                             <TruckContainer style={{margin:"0px"}}>
                                 <MdOutlineLocationOn  color="white" size={26}/>
-                                <Text>Columbus, OH</Text>
+                                <Text>{invoice.origin}</Text>
                             </TruckContainer>
-                            <SubText>Tuesday Aug 12, 2021  09:30am</SubText>
+                            <SubText>{DateFormat(invoice.date)}</SubText>
                         </LocationContainer>
                         <LocationContainer style={{alignItems:'end'}}>
-                            <Text style={{fontSize:"20px", fontWeight:"600"}}>1600$</Text>
-                            <SubText>3.25/per mile</SubText>
+                            <Text style={{fontSize:"20px", fontWeight:"600"}}>{invoice.trip_rate}$</Text>
+                            <SubText>{PerMileRate(invoice.trip_rate, invoice.dh, invoice.milage)}$/per mile</SubText>
                         </LocationContainer>
                         <LocationContainer>
                             <TruckContainer style={{margin:"0px"}}>
                                 <MdOutlineLocationOn  color="white" size={26}/>
-                                <Text>Columbus, OH</Text>
+                                <Text>{invoice.destination}</Text>
                             </TruckContainer>
-                            <SubText>Tuesday Aug 12, 2021  09:30am</SubText>
+                            <SubText>{DateFormat(invoice.date_end)}</SubText>
                         </LocationContainer>
                         <LocationContainer  style={{alignItems:'end', justifyContent:'center'}}>
                             <Text>Download PDF</Text>
@@ -83,44 +98,47 @@ export function InvoiceModal ({ showModal, setShowModal}){
                   </InvoiceContainer>
                   <DetailContainer>
                         <DetailItem>
-                            <DetailText>View Docs</DetailText>
-                            <DetailText>No PDF attached</DetailText>
+                            <DetailText style={{cursor:'pointer'}}>View Docs</DetailText>
+                            {invoice.documents.length > 0?
+                            <DetailText style={{color:"#32a852"}}>PDF attached</DetailText>:
+                            <DetailText style={{color:"#a83232"}}>No PDF attached</DetailText>
+                          }
                         </DetailItem>
                         <DetailItem>
                             <DetailText>Dispatcher Name</DetailText>
-                            <DetailText>No PDF attached</DetailText>
+                            <DetailText>{invoice.dispatcher.name}</DetailText>
                         </DetailItem>
                         <DetailItem>
                             <DetailText>Load Board</DetailText>
-                            <DetailText>No PDF attached</DetailText>
+                            <DetailText>{invoice.board.name}</DetailText>
                         </DetailItem>
                         <DetailItem>
                             <DetailText>Owner Name</DetailText>
-                            <DetailText>No PDF attached</DetailText>
+                            <DetailText>{invoice.owner.name}</DetailText>
                         </DetailItem>
                         <DetailItem>
                             <DetailText>Driver Name</DetailText>
-                            <DetailText>No PDF attached</DetailText>
+                            <DetailText>{invoice.driver.name}</DetailText>
                         </DetailItem>
                         <DetailItem>
                             <DetailText>Truck Number</DetailText>
-                            <DetailText>No PDF attached</DetailText>
+                            <DetailText>{invoice.driver.track_number}</DetailText>
                         </DetailItem>
                         <DetailItem>
                             <DetailText>Trailer Number</DetailText>
-                            <DetailText>No PDF attached</DetailText>
+                            <DetailText>{invoice.driver.trailer_number}</DetailText>
                         </DetailItem>
                         <DetailItem>
                             <DetailText>Dead Head </DetailText>
-                            <DetailText>No PDF attached</DetailText>
+                            <DetailText>{invoice.dh}</DetailText>
                         </DetailItem>
                         <DetailItem>
                             <DetailText>Loaded Miles</DetailText>
-                            <DetailText>No PDF attached</DetailText>
+                            <DetailText>{invoice.milage}</DetailText>
                         </DetailItem>
                         <DetailItem>
                             <DetailText>Special Notes</DetailText>
-                            <DetailText>No PDF attached</DetailText>
+                            <DetailText>{invoice.notes}</DetailText>
                         </DetailItem>
                         <BottomContainer>
                             <DetailText>Makropoınt requıred remınd to drıver to accept lınk</DetailText>
