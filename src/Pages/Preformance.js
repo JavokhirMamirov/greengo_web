@@ -1,16 +1,17 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const Invoice = () =>{
-    return(
+
+
+const Preformance = () =>{
+    return (
         <Container>
-            <h1>Invoice</h1>
+            <h1>Preformance</h1>
         </Container>
-        
     );
 }
 
-export default Invoice;
+export default Preformance;
 
 const Container = styled.div`
     width: 100%;

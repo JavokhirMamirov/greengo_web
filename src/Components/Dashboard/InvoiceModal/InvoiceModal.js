@@ -72,7 +72,11 @@ export const FilesContainer = styled.div`
     width: 100%;
     height: 100%;
     justify-content: start;
-    align-items: center; 
+    align-items: center;
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    } 
 `;
 
 export const InvoiceContainer = styled.div`

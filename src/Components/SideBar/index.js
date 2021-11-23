@@ -12,9 +12,9 @@ const SideBar = ({menuOpen}) =>{
             <DropMenu dropMenuOpen={dropMenuOpen}>
                 <DropMenuItem to='/'>Accounting</DropMenuItem>
                 <DropMenuItem to='/driver-list'>Driver List</DropMenuItem>
-                <DropMenuItem to='#'>Documents</DropMenuItem>
+                <DropMenuItem to='/documents'>Documents</DropMenuItem>
             </DropMenu>
-            <MenuItem to="#">Preformance</MenuItem>
+            <MenuItem to="/preformance">Preformance</MenuItem>
             <Label>Quick Links</Label>
             <QuickLink>TRIUMPH</QuickLink>
             <QuickLink>EzCOI</QuickLink>

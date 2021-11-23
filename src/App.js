@@ -9,6 +9,8 @@ import Dashboard from './Pages/Dashboard';
 import Invoice from './Pages/Invoice';
 import DriverList from './Pages/DriverList';
 import SignIn from './Components/SignIn';
+import Preformance from './Pages/Preformance';
+import Documents from './Pages/Documents';
 
 function getToken(){
   const token = sessionStorage.getItem('token')
@@ -30,6 +32,8 @@ function App() {
           <Route exact path="/" element={<Dashboard/>} />
           <Route  path="/invoice" element={<Invoice/>} />
           <Route  path="/driver-list" element={<DriverList/>} />
+          <Route  path="/preformance" element={<Preformance/>} />
+          <Route  path="/documents" element={<Documents/>} />
           </Routes>
       </Container>
     </Router>

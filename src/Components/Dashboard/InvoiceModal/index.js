@@ -65,21 +65,19 @@ export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice,
   };
 
   const delete_pdf = async(file_id)=>{
-    console.log(file_id);
     var formdata = new FormData();
     formdata.append("file_id", file_id);
     formdata.append("invoice_id", invoice.id);
     const response = await api.post('/delete-pdf-file/',formdata)
-    console.log(response);
-    if(response.success === true){
+    if(response.data.success === true){
       let a = []
       for (let dc of invoice.documents){
-        if (dc.id !== response.data.file_id){
+        if (String(dc.id) !== String(file_id)){
           a.push(dc)
         } 
       }
       invoice.documents = a
-      setInvoice(invoice)
+      setInvoice({...invoice})
     }
   }
 
@@ -93,11 +91,12 @@ export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice,
             'Content-Type': 'multipart/form-data',
             'Authorization': `Token ${token}` 
           }
-        }) 
-        if (response.success === true){
+        })
+        console.log(response); 
+        if (response.data.success === true){
           setFile(null)
-          invoice.documents=[response.data, ...invoice.documents]
-          setInvoice(invoice)
+          invoice.documents=[response.data.data, ...invoice.documents]
+          setInvoice({...invoice})
         }
     }
     
@@ -163,7 +162,7 @@ export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice,
                             <span style={{color:"#005951", fontSize:"10px"}}>Upload</span>
                             <input type="file" style={{display:'none'}} ref={fileInputRef} onChange={handleFileUpload}/>
                           </FileInput>
-                          {file?
+                          {file !== null?
                           <UploadFile>
                             <div style={{display:'flex', flexDirection:'column'}}>
                               <MdDone style={{cursor:'pointer'}} onClick={()=>UploadDocument(invoice.id)} color="#005951" size={20}/>
