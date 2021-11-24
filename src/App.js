@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import TopBar from './Components/TopBar';
@@ -12,14 +12,20 @@ import SignIn from './Components/SignIn';
 import Preformance from './Pages/Preformance';
 import Documents from './Pages/Documents';
 
-function getToken(){
-  const token = sessionStorage.getItem('token')
-  return token?token:null
-}
+
 
 function App() {
-  const [token, setToken] = useState(getToken());
+  const [token, setToken] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    const tokenstore = localStorage.getItem('token')
+    setToken(tokenstore)
+  }, [])
+
+  const LogOut = ()=>{
+    localStorage.clear()
+    setToken(null)
+  }
   if(!token){
     return <SignIn setToken={setToken}/>
   }
@@ -27,7 +33,7 @@ function App() {
     <Router>
       <TopBar setMenuOpen={setMenuOpen} menuOpen={menuOpen}/>
       <Container>
-        <SideBar menuOpen={menuOpen}/>
+        <SideBar menuOpen={menuOpen} Logout={LogOut}/>
         <Routes>
           <Route exact path="/" element={<Dashboard/>} />
           <Route  path="/invoice" element={<Invoice/>} />

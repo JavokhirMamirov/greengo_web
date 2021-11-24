@@ -21,7 +21,7 @@ async function SignInHandler(username, password, setToken){
 
 
 function setTokenSession(token){
-    sessionStorage.setItem('token',token)
+    localStorage.setItem('token',token)
 }
 
 const SignIn = ({setToken}) =>{

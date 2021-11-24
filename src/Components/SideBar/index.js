@@ -1,8 +1,12 @@
 import React, {useState} from 'react'
 import { Container,MenuItem, DropMenu, DropMenuItem,Label,QuickLink  } from './SideBar';
 
-const SideBar = ({menuOpen}) =>{
+const SideBar = ({menuOpen, Logout}) =>{
     const [dropMenuOpen, SetDropMenuOpen] = useState(true);
+
+    const LogOutD = () =>{
+        Logout();
+    }
     return (
         <Container menuOpen={menuOpen}>
             <MenuItem  to='/'>Dashboard</MenuItem>
@@ -15,6 +19,7 @@ const SideBar = ({menuOpen}) =>{
                 <DropMenuItem to='/documents'>Documents</DropMenuItem>
             </DropMenu>
             <MenuItem to="/preformance">Preformance</MenuItem>
+            <MenuItem to="#" onClick={()=>LogOutD()}>Logout</MenuItem>
             <Label>Quick Links</Label>
             <QuickLink>TRIUMPH</QuickLink>
             <QuickLink>EzCOI</QuickLink>
