@@ -9,7 +9,7 @@ const token = sessionStorage.getItem('token')
 
 
 
-export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice,setInvoice}){
+export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice,setInvoice, closeModal2}){
   const modalRef = useRef();
   const fileInputRef = useRef();
   const [documentShow, setDocumentShow] = useState(false);
@@ -32,7 +32,7 @@ export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice,
     e => {
       if (e.key === 'Escape' && showModal) {
         setShowModal(false);
-        console.log('I pressed');
+        
       }
     },
     [setShowModal, showModal]
@@ -78,6 +78,7 @@ export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice,
       }
       invoice.documents = a
       setInvoice({...invoice})
+      closeModal2();
     }
   }
 

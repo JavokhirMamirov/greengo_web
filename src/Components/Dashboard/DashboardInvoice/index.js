@@ -67,7 +67,10 @@ const DashboardInvoice = ({invoices, setInvoices, invoiceFilter, setInvoiceFilte
         }
     }
 
-
+    const closeModal = () =>{
+        get_invoiceFilter()
+        console.log('ok');
+      };
 
     return (
         <Container>
@@ -99,7 +102,7 @@ const DashboardInvoice = ({invoices, setInvoices, invoiceFilter, setInvoiceFilte
                 <BoardText>Avrage: {invoices.total_average}$/per mile</BoardText>
             </TotalDataContainer>
             <InvoiceModal setShowModal={setOpenInvoiceModal} showModal={openInvoiceModal} 
-            invoice={modalInvoiceData} deleteInvoice={deleteInvoice} setInvoice={setModalInvoiceData} />
+            invoice={modalInvoiceData} deleteInvoice={deleteInvoice} setInvoice={setModalInvoiceData} closeModal2={closeModal} />
         </Container>
     );
 }
