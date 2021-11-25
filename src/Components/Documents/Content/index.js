@@ -3,11 +3,11 @@ import { Container } from './Content';
 import DocItem from './DocItem';
 
 
-const DocumentContent = ({docs}) => {
+const DocumentContent = ({docs,GetDocsTypes}) => {
     return (
         <Container>
             {docs?.map((doc, index)=>(
-                <DocItem key={index} doc={doc}/>
+                <DocItem key={index} doc={doc} GetDocsTypes={GetDocsTypes}/>
             ))}
         </Container>
     );

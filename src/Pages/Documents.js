@@ -11,6 +11,7 @@ const Documents = () =>{
 
     const GetDocsTypes = async (doctype) =>{
         const response = await api.get(`/documents/?type=${doctype}`)
+        console.log(response);
         if (response.data.success === true){
             setDocs(response.data.data);
         }
@@ -22,7 +23,7 @@ const Documents = () =>{
     return(
         <Container>
             <DocumentTop type={type} setType={setType} GetDocsTypes={GetDocsTypes}/>
-            <DocumentContent docs={docs} setDocs={setDocs}/>
+            <DocumentContent docs={docs} setDocs={setDocs} GetDocsTypes={()=>GetDocsTypes(type)}/>
         </Container>
         
     );

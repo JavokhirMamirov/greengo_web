@@ -4,9 +4,8 @@ import { Container, SetUpNew, TabItem } from './Top';
 
 const DocumentTop = ({type, setType, GetDocsTypes}) => {
 
-    const handleClick = (type) =>{
-        
-        GetDocsTypes(type);
+    const handleClick = async(type) =>{
+        await GetDocsTypes(type);
         setType(type)
     }
 

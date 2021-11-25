@@ -5,7 +5,7 @@ import { Background, Button, DriverContainer, ModalContent, ModalWrapper, Title,
 import { MdOutlineLocalShipping, MdPersonOutline, MdOutlineLocationOn, MdClose, MdUploadFile, MdDone, MdRestoreFromTrash } from "react-icons/md";
 import { useState } from 'react/cjs/react.development';
 import api from '../../../api/api';
-const token = sessionStorage.getItem('token')
+const token = localStorage.getItem('token')
 
 
 
