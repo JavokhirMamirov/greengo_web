@@ -8,7 +8,7 @@ import SetUpDriverModal, { SetUpDispatcherModal, SetUpOperatorModal } from '../S
 import { GetDispatchers, GetDrivers, GetOperators } from '../../../api/requests';
 import api from '../../../api/api';
 
-const token = sessionStorage.getItem('token')
+const token = localStorage.getItem('token')
 
 const StaffTab = () =>{
     const [tabItem, setTabItem] = useState('driver');

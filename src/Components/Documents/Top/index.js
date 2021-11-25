@@ -2,8 +2,8 @@ import React from 'react'
 import { Container, SetUpNew, TabItem } from './Top';
 
 
-const DocumentTop = ({type, setType, GetDocsTypes}) => {
-
+const DocumentTop = ({type, setType, GetDocsTypes, setShowModal}) => {
+    
     const handleClick = async(type) =>{
         await GetDocsTypes(type);
         setType(type)
@@ -24,7 +24,7 @@ const DocumentTop = ({type, setType, GetDocsTypes}) => {
                 className={type===3?"active":null}
                 onClick={()=>handleClick(3)}
                 >Existing Trucks Docs</TabItem>
-            <SetUpNew>Add More</SetUpNew>
+            <SetUpNew onClick={()=>setShowModal(true)}>Add More</SetUpNew>
         </Container>
     );
 }
