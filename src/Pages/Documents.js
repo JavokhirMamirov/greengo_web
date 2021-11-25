@@ -1,13 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'react';
 import styled from 'styled-components';
 import DocumentContent from '../Components/Documents/Content';
 import DocumentTop from '../Components/Documents/Top';
+import api from '../api/api'
 
 const Documents = () =>{
+    const [type, setType] = useState(1);
+    const [docs, setDocs] = useState([]);
+
+    const GetDocsTypes = async (doctype) =>{
+        const response = await api.get(`/documents/?type=${doctype}`)
+        if (response.data.success === true){
+            setDocs(response.data.data);
+        }
+    }
+
+    useEffect(()=>{
+        GetDocsTypes(type);
+    },[])
     return(
         <Container>
-            <DocumentTop/>
-            <DocumentContent/>
+            <DocumentTop type={type} setType={setType} GetDocsTypes={GetDocsTypes}/>
+            <DocumentContent docs={docs} setDocs={setDocs}/>
         </Container>
         
     );

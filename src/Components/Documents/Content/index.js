@@ -3,13 +3,12 @@ import { Container } from './Content';
 import DocItem from './DocItem';
 
 
-const DocumentContent = () => {
+const DocumentContent = ({docs}) => {
     return (
         <Container>
-            <DocItem/>
-            <DocItem/>
-            <DocItem/>
-            <DocItem/>
+            {docs?.map((doc, index)=>(
+                <DocItem key={index} doc={doc}/>
+            ))}
         </Container>
     );
 }

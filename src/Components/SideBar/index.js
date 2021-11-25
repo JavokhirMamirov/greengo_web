@@ -14,7 +14,7 @@ const SideBar = ({menuOpen, Logout}) =>{
             <MenuItem to='#'>Statements</MenuItem>
             <MenuItem to="#" onClick={()=>SetDropMenuOpen(!dropMenuOpen)}>Carrier Account</MenuItem>
             <DropMenu dropMenuOpen={dropMenuOpen}>
-                <DropMenuItem to='/'>Accounting</DropMenuItem>
+                <DropMenuItem to='#'>Accounting</DropMenuItem>
                 <DropMenuItem to='/driver-list'>Driver List</DropMenuItem>
                 <DropMenuItem to='/documents'>Documents</DropMenuItem>
             </DropMenu>

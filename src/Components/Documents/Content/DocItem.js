@@ -1,10 +1,10 @@
 import React,{ useRef, useState } from 'react'
 import { MdDone, MdRestoreFromTrash, MdUploadFile } from 'react-icons/md';
 import styled from 'styled-components';
-import {AddFileBtn, DocContainer,File,FileInput,FilesContainer,FilesLink,ItemContainer, Span, UploadFile } from './Content';
+import {DocContainer,File,FileInput,FilesContainer,FilesLink,ItemContainer, Span, UploadFile } from './Content';
 
 
-const DocItem = () => {
+const DocItem = ({doc}) => {
     const [isOpen, setOpen] = useState(false);
     const InputRef = useRef();
     const [file, setFile] = useState(null);
@@ -15,7 +15,7 @@ const DocItem = () => {
         <Container>
             <ItemContainer onClick={()=>setOpen(!isOpen)}>
                 <Span>View Docs |</Span>
-                <Span>MC Letter</Span>
+                <Span>{doc.name}</Span>
             </ItemContainer>
             {isOpen?
             <DocContainer>
