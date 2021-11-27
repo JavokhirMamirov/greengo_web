@@ -5,7 +5,7 @@ import DriverActivity from '../Components/Dashboard/DriverActivity';
 import DashBoardTopBar from '../Components/Dashboard/TopBar';
 import { GetBoards, GetDispatchers, GetDrivers, GetInvoices, GetOperators } from '../api/requests';
 import api from '../api/api';
-const token = sessionStorage.getItem('token')
+const token = localStorage.getItem('token')
 const Dashboard = () =>{
     const [drivers, setDrivers] = useState([])
     const [dispatchers, setDispatchers] = useState([])
