@@ -1,13 +1,13 @@
 import React from 'react'
 import InvoiceItem from '../../Dashboard/Invoice';
-import { BoardContainer, BoardItem, BottomDataContainer, Container, InvoiceDiv, Span, TotalContainer } from './InvoiceContainer';
+import { BoardContainer, BoardItem, BottomDataContainer, Container, DetailContainer, DetailItem, Expences, ExpencesContainer, InvoiceDiv, PayOutContainer, PayOutDataContainer, Span, TotalContainer } from './InvoiceContainer';
 import InvoiceTop from './Top';
 
 
-const InvoiceContainer = ({invoices}) =>{
+const InvoiceContainer = ({invoices, setInvoiceFilter, setInvoices,invoiceFilter}) =>{
     return (
         <Container>
-            <InvoiceTop/>
+            <InvoiceTop setInvoiceFilter={setInvoiceFilter} setInvoices={setInvoices} invoiceFilter={invoiceFilter} />
             <InvoiceDiv>
                 {invoices.data !== undefined?invoices.data.map((invoice, index)=>(
                         <InvoiceItem key={index} invoice={invoice} />
@@ -16,18 +16,45 @@ const InvoiceContainer = ({invoices}) =>{
             </InvoiceDiv>
             <BottomDataContainer>
                 <BoardContainer>
-                    <BoardItem style={{borderTop:"1px solid #999999"}}>
-                        DAT Gross: 45
-                    </BoardItem>
-                    <BoardItem>
-                        DAT Gross: 45
-                    </BoardItem>
+                    {invoices.board_data !== undefined? invoices.board_data.map((board, index)=>(
+                    <BoardItem key={index} style={{borderTop: index === 0?"1px solid #999999":"none" }}>{board.name} Groos: {board.gross} $</BoardItem>
+                    )):null}
                 </BoardContainer>
                 <TotalContainer>
-                    <Span>Total Miles: 1425</Span>
-                    <Span>Total Groos: 4800$</Span>
-                    <Span>Avrage Per Mile/ 3.36$</Span>
+                    <Span>Total Miles: {invoices.total_miles}</Span>
+                    <Span>Total Groos: {invoices.total_gross} $</Span>
+                    <Span>Avrage: {invoices.total_average}$/per mile</Span>
                 </TotalContainer>
+                <ExpencesContainer>
+                    <Expences>
+                        <Span>-Expences</Span>
+                    </Expences>
+                    <DetailContainer>
+                        <DetailItem>
+                            <Span>COMPANY FEE 10%</Span>
+                            <Span style={{marginLeft:"auto", padding:"2px"}}>480$</Span>
+                        </DetailItem>
+                        <DetailItem>
+                            <Span>INSURANCE</Span>
+                            <Span  style={{marginLeft:"auto", padding:"2px"}}>380$</Span>
+                        </DetailItem>
+                        <DetailItem>
+                            <Span>LogBook</Span>
+                            <Span style={{marginLeft:"auto", padding:"2px"}}>480$</Span>
+                        </DetailItem>
+                        <DetailItem style={{backgroundColor:"#ffe9a9",border:"none"}}>
+                            <Span>TOTAL</Span>
+                            <Span  style={{marginLeft:"auto", padding:"2px"}}>480$</Span>
+                        </DetailItem>
+                    </DetailContainer>
+                    <PayOutContainer>
+                        <Span>PAY OUT : </Span>
+                    </PayOutContainer>
+                    <PayOutDataContainer>
+                        <Span>=3,3135</Span>
+                    </PayOutDataContainer>
+                    
+                </ExpencesContainer>
             </BottomDataContainer>
         </Container>
     );

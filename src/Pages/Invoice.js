@@ -28,7 +28,7 @@ const Invoice = () =>{
     }, [])
     return(
         <Container>
-            <InvoiceContainer invoices={invoices}/>
+            <InvoiceContainer invoices={invoices} invoiceFilter={invoiceFilter} setInvoiceFilter={setInvoiceFilter} setInvoices={setInvoices}/>
             <FilterContainer />
         </Container>
         
