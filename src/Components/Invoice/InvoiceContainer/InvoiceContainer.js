@@ -13,7 +13,7 @@ export const InvoiceDiv = styled.div`
     display: flex;
     flex-direction: column;
     margin: 20px;
-    height: 350px;
+    height: 500px;
     overflow-y: scroll;
     &::-webkit-scrollbar {
     display: none;
@@ -23,7 +23,13 @@ export const InvoiceDiv = styled.div`
 export const BottomDataContainer = styled.div`
     display: flex;
     margin: 20px;
+    @media (max-width:1500px){
+        flex-direction: column;
+    }
+`;
 
+export const Cont = styled.div`
+    display: flex;
 `;
 
 export const BoardContainer = styled.div`

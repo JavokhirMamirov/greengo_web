@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { GetInvoices } from '../../../../api/requests';
-import { Container, DateInput, DateText, SearchInput, SortButton, SortContainer, SotrText, TopHistory } from './Top';
+import { Container, DateInput, DateText, DivSearch, SearchInput, SortButton, SortContainer, SotrText, TopHistory } from './Top';
 
 
 const InvoiceTop = ({setInvoices,invoiceFilter, setInvoiceFilter}) =>{
@@ -46,6 +46,7 @@ const InvoiceTop = ({setInvoices,invoiceFilter, setInvoiceFilter}) =>{
     }
     return (
         <Container>
+            <DivSearch>
             <TopHistory>Top History</TopHistory>
             <SearchInput type="text" placeholder="Owner/Driver name"  onChange={v => onChageSearch(v.target.value)}/>
             <div style={{float:"left"}}>
@@ -54,6 +55,7 @@ const InvoiceTop = ({setInvoices,invoiceFilter, setInvoiceFilter}) =>{
                 <DateText>End:</DateText>
                 <DateInput type="date" onChange={v=>onChageDateEnd(v.target.value)}/>
             </div>
+            </DivSearch>
             <SortContainer>
                 <SotrText>Sort by</SotrText>
                 <SortButton>Date</SortButton>

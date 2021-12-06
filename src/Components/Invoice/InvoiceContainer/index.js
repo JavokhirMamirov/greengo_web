@@ -1,6 +1,6 @@
 import React from 'react'
 import InvoiceItem from '../../Dashboard/Invoice';
-import { BoardContainer, BoardItem, BottomDataContainer, Container, DetailContainer, DetailItem, Expences, ExpencesContainer, InvoiceDiv, PayOutContainer, PayOutDataContainer, Span, TotalContainer } from './InvoiceContainer';
+import { BoardContainer, BoardItem, BottomDataContainer, Cont, Container, DetailContainer, DetailItem, Expences, ExpencesContainer, InvoiceDiv, PayOutContainer, PayOutDataContainer, Span, TotalContainer } from './InvoiceContainer';
 import InvoiceTop from './Top';
 
 
@@ -15,6 +15,7 @@ const InvoiceContainer = ({invoices, setInvoiceFilter, setInvoices,invoiceFilter
 
             </InvoiceDiv>
             <BottomDataContainer>
+                <Cont>
                 <BoardContainer>
                     {invoices.board_data !== undefined? invoices.board_data.map((board, index)=>(
                     <BoardItem key={index} style={{borderTop: index === 0?"1px solid #999999":"none" }}>{board.name} Groos: {board.gross} $</BoardItem>
@@ -25,6 +26,7 @@ const InvoiceContainer = ({invoices, setInvoiceFilter, setInvoices,invoiceFilter
                     <Span>Total Groos: {invoices.total_gross} $</Span>
                     <Span>Avrage: {invoices.total_average}$/per mile</Span>
                 </TotalContainer>
+                </Cont>
                 <ExpencesContainer>
                     <Expences>
                         <Span>-Expences</Span>

@@ -2,8 +2,14 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
-    display: inline;
+    display: flex;
+    flex-direction: column;
     margin: 10px;
+`;
+
+
+export const DivSearch = styled.div`
+    display: inline;
 `;
 
 export const TopHistory = styled.span`
@@ -55,6 +61,8 @@ export const DateInput = styled.input`
 
 export const SortContainer = styled.div`
     display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
 `;
 
 export const SortButton = styled.div`
