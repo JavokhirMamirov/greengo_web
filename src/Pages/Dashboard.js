@@ -47,12 +47,12 @@ const Dashboard = () =>{
         
     }, [])
     
-
+    const get_drivers = async () =>{
+        const res_dr = await GetDrivers(true);
+        setDrivers(res_dr);
+    }
     useEffect(() => {
-        const get_drivers = async () =>{
-            const res_dr = await GetDrivers(true);
-            setDrivers(res_dr);
-        }
+        
         get_drivers();
         
     }, [])
@@ -94,7 +94,7 @@ const Dashboard = () =>{
             />
             <ContentDiv>
                 <DashboardInvoice invoices={invoices} setInvoices={setInvoices} setInvoiceFilter={setInvoiceFilter} invoiceFilter={invoiceFilter}/>
-                <DriverActivity drivers={drivers}/>
+                <DriverActivity drivers={drivers}  get_drivers={get_drivers}/>
             </ContentDiv>
         </Container>
     );

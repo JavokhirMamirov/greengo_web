@@ -38,6 +38,15 @@ export async function GetOperators(active){
     }
 }
 
+export async function GetDriverStatus(active){
+    const response = await api.get(active===true?'/driver-status/?is_active=true':'/driver-status/')
+    if(response.data.success===true){
+        return response.data.data
+    }else{
+        return []
+    }
+}
+
 
 export async function GetInvoices(filter){
     if (filter ==={}){
