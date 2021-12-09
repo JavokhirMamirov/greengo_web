@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Container, CoverBtn, Day, Form, Form2, Input, Month, Option, Select, TextDiv, Title, Today, Weekday } from './DashboardForm';
-import { Autocomplete } from '@react-google-maps/api';
 import PlacesAutocomplete from '../PlacesAutoComplate';
 
 
@@ -12,7 +11,6 @@ const DashBoardForm = ({drivers, dispatchers, operators, boards, SetUpInvoice}) 
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     
     const [driverData, setDriverData] = useState(null)
-    const [autocomplate, setAutocomplate] = useState(null);
     const [dispatcher, setDispatcher] = useState(null);
     const [board, setBoard] = useState(null);
     const [owner, setOwner] = useState(null);
@@ -25,9 +23,6 @@ const DashBoardForm = ({drivers, dispatchers, operators, boards, SetUpInvoice}) 
     const [notes, setNotes] = useState('');
     const [date_end, setDate_end] = useState('');
     // const [status, setStatus] = useState(null);
-
-    console.log(React.version);
-    const onLoad = (autoC) => setAutocomplate(autoC);
 
     const DriverOnChange = (id) =>{
         if (id === null){

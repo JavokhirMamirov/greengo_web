@@ -1,9 +1,8 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Container, TopList, TextTop, Input, DateInput,DateText, InvoiceContainer, BoardContainer, BoardText, TotalDataContainer } from './DashboardInvoice';
 import {MdOutlineSearch} from 'react-icons/md'
 import InvoiceItem from '../Invoice';
 import { GetInvoices } from '../../../api/requests';
-import { useState } from 'react/cjs/react.development';
 import { InvoiceModal } from '../InvoiceModal';
 import api from '../../../api/api';
 

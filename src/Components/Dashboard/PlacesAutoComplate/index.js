@@ -1,3 +1,5 @@
+import React, {useState} from 'react'
+
 import usePlacesAutocomplete from "use-places-autocomplete";
 import {
   Combobox,
@@ -8,7 +10,6 @@ import {
 } from "@reach/combobox";
 
 import "@reach/combobox/styles.css";
-import { useState } from "react/cjs/react.development";
 
 const PlacesAutocomplete = ({onChange, placeholder, value2}) => {
 

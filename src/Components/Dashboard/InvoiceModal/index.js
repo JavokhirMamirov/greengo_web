@@ -1,9 +1,8 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { Background, Button, DriverContainer, ModalContent, ModalWrapper, Title, TopBar,
   TruckContainer,InvoiceContainer, Text, LocationContainer, SubText, DetailContainer, DetailItem, DetailText, BottomContainer, DocumentContainer, FileInput, FilesContainer, FilesLink, File, UploadFile } from './InvoiceModal';
 import { MdOutlineLocalShipping, MdPersonOutline, MdOutlineLocationOn, MdClose, MdUploadFile, MdDone, MdRestoreFromTrash } from "react-icons/md";
-import { useState } from 'react/cjs/react.development';
 import api from '../../../api/api';
 const token = localStorage.getItem('token')
 

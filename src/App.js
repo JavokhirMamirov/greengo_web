@@ -40,7 +40,7 @@ function App() {
           <Route  path="/driver-list" element={<DriverList/>} />
           <Route  path="/preformance" element={<Preformance/>} />
           <Route  path="/documents" element={<Documents/>} />
-          </Routes>
+        </Routes>
       </Container>
     </Router>
   );
