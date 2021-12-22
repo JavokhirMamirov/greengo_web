@@ -7,8 +7,12 @@ export const Container = styled.div`
     flex-direction: column;
     bottom: 0;
     min-width: 230px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+    display: none;
+}
     background-color: #005951;
-    height: 100vh;
+    height: 95vh;
     position: fixed;
     margin-top: 50px;
     top: 0;

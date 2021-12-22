@@ -1,6 +1,6 @@
 import React from 'react'
 import InvoiceItem from '../../Dashboard/Invoice';
-import { BoardContainer, BoardItem, BottomDataContainer, Cont, Container, DetailContainer, DetailItem, Expences,Hidden, ExpencesContainer, InvoiceDiv, PayOutContainer, PayOutDataContainer, Span, TotalContainer } from './InvoiceContainer';
+import { BoardContainer, BoardItem, BottomDataContainer, Cont, Container, DetailContainer, DetailItem, Expences, ExpencesContainer, InvoiceDiv, PayOutContainer, PayOutDataContainer, Span, TotalContainer } from './InvoiceContainer';
 import InvoiceTop from './Top';
 
 
@@ -16,6 +16,7 @@ const InvoiceContainer = ({invoices, setInvoiceFilter, setInvoices,invoiceFilter
             </InvoiceDiv>
             <BottomDataContainer>
                 <div style={{display:'flex',boxSizing:'border-box'}}>
+                    
                 <Cont>
                 <BoardContainer>
                     {invoices.board_data !== undefined? invoices.board_data.map((board, index)=>(
@@ -30,7 +31,7 @@ const InvoiceContainer = ({invoices, setInvoiceFilter, setInvoices,invoiceFilter
                 </Cont>
                 <ExpencesContainer>
                     <Expences>
-                        <Span>Expences</Span>
+                        <Span>-Expences</Span>
                     </Expences>
                     <DetailContainer>
                         <DetailItem>
@@ -51,18 +52,13 @@ const InvoiceContainer = ({invoices, setInvoiceFilter, setInvoices,invoiceFilter
                         </DetailItem>
                     </DetailContainer>
                     <PayOutContainer>
-                        <Span>PAY OUT: </Span>
+                        <Span>PAY OUT : </Span>
                     </PayOutContainer>
                     <PayOutDataContainer>
                         <Span>=3,3135</Span>
                     </PayOutDataContainer>
                     
                 </ExpencesContainer>
-                <Hidden>
-
-                </Hidden>
-
-
                 </div>
             </BottomDataContainer>
         </Container>

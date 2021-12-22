@@ -65,6 +65,7 @@ export const Select = styled.select`
     height: 38px;
     margin:0px 20px 10px 0px;
     outline: none;
+    font-size:12px;
     padding: 10px 20px 10px 10px;
     float: left;
     @media (max-width: 900px) {
@@ -81,8 +82,7 @@ export const TextDiv = styled.div`
     display: flex;
     float: left;
     flex-direction: column;
-    
-    margin:0px 20px 10px 0px;
+    margin:0px 15px 10px 0px;
 `;
 
 export const CoverBtn = styled.button`
@@ -104,7 +104,7 @@ export const NewMedia = styled.div`
     justify-content:center;
     align-items:center;
     // border:1px solid red;
-    @media (max-width: 1525px) {
+    @media (max-width: 1325px) {
         width:90%;
         align-items:center;
     }
@@ -114,7 +114,7 @@ export const NewMedia1 = styled.div`
     justify-content:space-around;
     align-items:center;
     // border:1px solid red;
-    @media (max-width: 1525px) {
+    @media (max-width: 1325px) {
         width:90%;
     }
 `
@@ -123,7 +123,7 @@ export const NewMedia3 = styled.div`
     justify-content:space-evenly;
     align-items:center;
     // border:1px solid red;
-    @media (max-width: 1525px) {
+    @media (max-width: 1325px) {
         width:85%;
         margin-left:10px;
     }
