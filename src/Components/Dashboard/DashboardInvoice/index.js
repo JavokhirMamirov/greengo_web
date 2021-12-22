@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, TopList, TextTop, Input, DateInput, DateText, InvoiceContainer, BoardContainer, BoardText, TotalDataContainer } from './DashboardInvoice';
+import {Mediadiv, Container, TopList, TextTop, Input, DateInput, DateText, InvoiceContainer, BoardContainer, BoardText, TotalDataContainer } from './DashboardInvoice';
 import { MdOutlineSearch } from 'react-icons/md'
 import InvoiceItem from '../Invoice';
 import { GetInvoices } from '../../../api/requests';
@@ -75,17 +75,17 @@ const DashboardInvoice = ({ invoices, setInvoices, invoiceFilter, setInvoiceFilt
         <Container>
             <TopList>
                 <TextTop>Trip List</TextTop>
-                <MdOutlineSearch size={20} style={{ position: 'absolute', marginLeft: "300px" }} color="#979999" />
-                <Input type="text" placeholder="Search by ID, location, driver" onChange={v => onChageSearch(v.target.value)} />
+                <MdOutlineSearch size={20} style={{ position: 'absolute', marginLeft: "280px" }} color="#979999" />
+                <Input type="text" placeholder="Search by ID, location, driv.." onChange={v => onChageSearch(v.target.value)} />
                 <div style={{ marginLeft: "auto" ,display:'flex'}}>
-                    <div>
+                    <Mediadiv>
                         <DateText>Start:</DateText>
                         <DateInput type="date" onChange={v => onChageDateStart(v.target.value)} />
-                    </div>
-                    <div>
+                    </Mediadiv>
+                    <Mediadiv>
                         <DateText>End:</DateText>
                         <DateInput type="date" onChange={v => onChageDateEnd(v.target.value)} />
-                    </div>
+                    </Mediadiv>
                 </div>
             </TopList>
             <InvoiceContainer>
