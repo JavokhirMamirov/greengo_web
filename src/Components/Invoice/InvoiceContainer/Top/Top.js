@@ -3,13 +3,22 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     display: flex;
-    flex-direction: column;
     margin: 10px;
+    justify-content:space-between;
+    align-items:center;
+    @media (max-width: 1600px) {
+        flex-direction: column;
+        // display:block;
+    }
 `;
 
 
 export const DivSearch = styled.div`
-    display: inline;
+    display: flex;
+    @media (max-width: 1600px) {
+        justify-content:space-between;
+        align-items:center;
+    }
 `;
 
 export const TopHistory = styled.span`
@@ -23,7 +32,7 @@ export const SotrText = styled.span`
     font-size: 15px;
     color: #054a48;
     float: left;
-    margin-top: 10px;
+    // margin-top: 10px;
     margin-left: 10px;
     margin-right: 5px;
 `;
@@ -61,8 +70,11 @@ export const DateInput = styled.input`
 
 export const SortContainer = styled.div`
     display: flex;
-    justify-content: flex-end;
-    margin-top: 15px;
+    // justify-content: flex-end;
+    // margin-top: 15px;
+    @media (max-width: 1600px) {
+        margin:right;
+    }
 `;
 
 export const SortButton = styled.div`
@@ -71,4 +83,5 @@ export const SortButton = styled.div`
     padding: 10px;
     margin-right: 7px;
     cursor: pointer;
+    height:20px;
 `;

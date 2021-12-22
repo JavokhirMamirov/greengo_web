@@ -34,13 +34,15 @@ export const Title = styled.span`
     margin-bottom: 5px;
 `; 
 export const Form = styled.div`
-    display: inline;
+    display: flex;
+    flex-wrap:wrap;     
     margin:20px;
     width: 100%;
     
 `;
 export const Form2 = styled.div`
-    display: inline;
+    display: flex;
+    flex-wrap:wrap;
     margin-left: 20px;
     
 `;
