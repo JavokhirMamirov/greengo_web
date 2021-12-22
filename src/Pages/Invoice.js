@@ -46,7 +46,11 @@ const Container = styled.div`
     display: grid;
     gap: 20px;
     grid-template-columns: 70% 30%;
-    @media (max-width:968px){
+    @media (max-width:1355px){
+        margin-left: 250px;
+        grid-template-columns: 100%;
+    }
+    @media (max-width:970px){
         margin-left: 30px;
         grid-template-columns: 100%;
     }

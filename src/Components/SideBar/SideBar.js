@@ -1,20 +1,20 @@
 import styled from "styled-components";
 import {
     Link
-    } from 'react-router-dom'
-export const  Container = styled.div`
+} from 'react-router-dom'
+export const Container = styled.div`
     display: flex;
     flex-direction: column;
     overflow:auto;
     bottom: 0;
     min-width: 230px;
     background-color: #005951;
-    height: 95vh;
+    height: 100vh;
     position: fixed;
     margin-top: 50px;
     top: 0;
     @media (max-width:968px){
-        display: ${props=>props.menuOpen === false? 'none':'flex'};
+        display: ${props => props.menuOpen === false ? 'none' : 'flex'};
     }
 `;
 
@@ -35,7 +35,7 @@ export const MenuItem = styled(Link)`
 
 
 export const DropMenu = styled.div`
-    display: ${props=>props.dropMenuOpen? 'flex':'none'};
+    display: ${props => props.dropMenuOpen ? 'flex' : 'none'};
     flex-direction: column;
 
 `;

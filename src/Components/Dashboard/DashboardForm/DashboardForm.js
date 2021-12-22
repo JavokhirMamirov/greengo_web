@@ -34,13 +34,15 @@ export const Title = styled.span`
     margin-bottom: 5px;
 `; 
 export const Form = styled.div`
-    display: inline;
+    display: flex;
+    flex-wrap:wrap;     
     margin:20px;
     width: 100%;
     
 `;
 export const Form2 = styled.div`
-    display: inline;
+    display: flex;
+    flex-wrap:wrap;
     margin-left: 20px;
     
 `;
@@ -85,7 +87,38 @@ export const CoverBtn = styled.button`
     float: left;
     width: 120px;
     cursor: pointer;
+    margin-top:-10px;
     &:hover{
         background-color:#018c81;
     }
 `;
+
+export const NewMedia = styled.div`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    // border:1px solid red;
+    @media (max-width: 1525px) {
+        width:90%;
+        align-items:center;
+    }
+`
+export const NewMedia1 = styled.div`
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    // border:1px solid red;
+    @media (max-width: 1525px) {
+        width:90%;
+    }
+`
+export const NewMedia3 = styled.div`
+    display:flex;
+    justify-content:space-evenly;
+    align-items:center;
+    // border:1px solid red;
+    @media (max-width: 1525px) {
+        width:85%;
+        margin-left:10px;
+    }
+`

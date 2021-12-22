@@ -23,14 +23,10 @@ export const InvoiceDiv = styled.div`
 export const BottomDataContainer = styled.div`
     display: flex;
     margin: 20px;
-    @media (max-width:1500px){
-        flex-direction: column;
-    }
 `;
 
 export const Cont = styled.div`
     display: flex;
-    border:1px solid red;
 `;
 
 export const BoardContainer = styled.div`
@@ -59,6 +55,7 @@ export const TotalContainer = styled.div`
 
 export const ExpencesContainer = styled.div`
     display: flex;
+    width:100%;
     justify-content: center;
     align-items: flex-end;
     border: 1px solid #999999;
@@ -71,6 +68,8 @@ export const Expences = styled.div`
     justify-content: center;
     background-color: #ffe9a9;
     height: 100%;
+    width: 55%;
+
     width:35%;
     border-right: 1px solid #999999;
 
@@ -86,7 +85,8 @@ export const Span = styled.span`
 export const DetailContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 130%;
+    
 `;
 
 export const DetailItem = styled.div`
@@ -100,12 +100,18 @@ export const PayOutContainer = styled.div`
     justify-content: center;
     background-color: #b2e5b5;
     height: 100%;
-    width: 100px;
+    width: 80%;
 `
 export const PayOutDataContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
-    width: 120px;
+    width: 80%;
+`
+
+export const Hidden = styled.div`
+    width:15%;
+    height:100px;
+
 `
