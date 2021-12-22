@@ -27,7 +27,7 @@ export const Input = styled.input`
     outline: none;
     height: 32px;
     margin-left: 30px;
-    width: 200px;
+    width: 180px;
     font-size: 14px;
     padding-right: 25px;
 `;
@@ -75,4 +75,10 @@ export const TotalDataContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin: 20px;
+`;
+
+export const Mediadiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
