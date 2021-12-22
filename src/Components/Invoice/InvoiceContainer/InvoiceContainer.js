@@ -30,6 +30,7 @@ export const BottomDataContainer = styled.div`
 
 export const Cont = styled.div`
     display: flex;
+    border:1px solid red;
 `;
 
 export const BoardContainer = styled.div`
@@ -70,7 +71,7 @@ export const Expences = styled.div`
     justify-content: center;
     background-color: #ffe9a9;
     height: 100%;
-    width: 100px;
+    width:35%;
     border-right: 1px solid #999999;
 
 `;
