@@ -15,6 +15,7 @@ const InvoiceContainer = ({invoices, setInvoiceFilter, setInvoices,invoiceFilter
 
             </InvoiceDiv>
             <BottomDataContainer>
+                <div style={{display:'flex',boxSizing:'border-box'}}>
                 <Cont>
                 <BoardContainer>
                     {invoices.board_data !== undefined? invoices.board_data.map((board, index)=>(
@@ -60,6 +61,7 @@ const InvoiceContainer = ({invoices, setInvoiceFilter, setInvoices,invoiceFilter
                 <Hidden>
 
                 </Hidden>
+                </div>
             </BottomDataContainer>
         </Container>
     );

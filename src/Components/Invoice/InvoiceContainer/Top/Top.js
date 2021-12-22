@@ -5,9 +5,11 @@ export const Container = styled.div`
     display: flex;
     margin: 10px;
     justify-content:space-between;
-    align-items:center;
-    @media (max-width: 1600px) {
+        width:100%;
+        align-items:center;
+    @media (max-width: 1620px) {
         flex-direction: column;
+        width:100%;
         // display:block;
     }
 `;
@@ -70,10 +72,15 @@ export const DateInput = styled.input`
 
 export const SortContainer = styled.div`
     display: flex;
-    // justify-content: flex-end;
-    // margin-top: 15px;
+    justify-content: space-between;
+        margin-right:20px;
+        // margin-top: 15px;
+    align-items:center;
     @media (max-width: 1600px) {
-        margin:right;
+        margin-right:20px;
+    }
+    @media (max-width: 1620px) {
+        margin-top:20px;
     }
 `;
 
@@ -85,3 +92,4 @@ export const SortButton = styled.div`
     cursor: pointer;
     height:20px;
 `;
+

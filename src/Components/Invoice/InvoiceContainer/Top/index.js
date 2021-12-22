@@ -50,11 +50,11 @@ const InvoiceTop = ({setInvoices,invoiceFilter, setInvoiceFilter}) =>{
             <TopHistory>Top History</TopHistory>
             <SearchInput type="text" placeholder="Owner/Driver name"  onChange={v => onChageSearch(v.target.value)}/>
             <div style={{display:'flex',alignItems:'center'}}>
-                <div style={{display:'flex',border:'1px solid red',justifyContent:'space-between',alignItems:'center'}}>
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
                 <DateText>Start:</DateText>
                 <DateInput type="date" onChange={v=>onChageDateStart(v.target.value)} />
                 </div>
-                <div style={{display:'flex',border:'1px solid red',justifyContent:'space-between',alignItems:'center'}}>
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
                 <DateText>End:</DateText>
                 <DateInput type="date" onChange={v=>onChageDateEnd(v.target.value)}/>
                 </div>

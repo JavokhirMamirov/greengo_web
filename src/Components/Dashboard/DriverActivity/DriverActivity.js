@@ -52,14 +52,20 @@ export const DriverTextContainer = styled.div`
 export const Title = styled.span`
     font-size: 14px;
     color: white;
-    margin: 5px;
+    margin: 4px;
     text-align:center;
+    @media (max-width: 1525px) {
+        font-size:11px;
+    }
 `;
 
 export const SubTitle = styled.span`
     font-size: 16px;
     color: #054a48;
     text-align:center;
+    @media (max-width: 1525px) {
+        font-size:11px;
+    }
 `;
 
 export const StatusText = styled.span`
@@ -67,4 +73,7 @@ export const StatusText = styled.span`
     text-align:center;
     color: white;
     text-transform: uppercase;
+    @media (max-width: 1525px) {
+        font-size:11px;
+    }
 `;

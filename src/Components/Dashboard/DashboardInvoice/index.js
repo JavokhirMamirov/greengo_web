@@ -1,6 +1,6 @@
-import React,{useState} from 'react'
-import { Container, TopList, TextTop, Input, DateInput,DateText, InvoiceContainer, BoardContainer, BoardText, TotalDataContainer } from './DashboardInvoice';
-import {MdOutlineSearch} from 'react-icons/md'
+import React, { useState } from 'react'
+import { Container, TopList, TextTop, Input, DateInput, DateText, InvoiceContainer, BoardContainer, BoardText, TotalDataContainer } from './DashboardInvoice';
+import { MdOutlineSearch } from 'react-icons/md'
 import InvoiceItem from '../Invoice';
 import { GetInvoices } from '../../../api/requests';
 import { InvoiceModal } from '../InvoiceModal';
@@ -9,99 +9,103 @@ import api from '../../../api/api';
 
 
 
-const DashboardInvoice = ({invoices, setInvoices, invoiceFilter, setInvoiceFilter}) =>{
-    
+const DashboardInvoice = ({ invoices, setInvoices, invoiceFilter, setInvoiceFilter }) => {
+
     const [dateStart, setDateStart] = useState('');
     const [search, setSearch] = useState('');
     const [dateEnd, setDateEnd] = useState('');
     const [modalInvoiceData, setModalInvoiceData] = useState('');
     const [openInvoiceModal, setOpenInvoiceModal] = useState(false);
-    
-    const get_invoiceFilter = async()=>{
+
+    const get_invoiceFilter = async () => {
         const res_dr = await GetInvoices(invoiceFilter);
         setInvoices(res_dr);
     }
 
-    const onChageSearch=(value)=>{
+    const onChageSearch = (value) => {
         setSearch(value)
         var filter = {
-            search:value,
-            date__gte:dateStart !== ''? dateStart+" 00:00":null,
-            date__lte:dateEnd !== ''? dateEnd + " 00:00":null
+            search: value,
+            date__gte: dateStart !== '' ? dateStart + " 00:00" : null,
+            date__lte: dateEnd !== '' ? dateEnd + " 00:00" : null
         }
         setInvoiceFilter(filter)
         get_invoiceFilter()
     }
 
-    const onChageDateStart = (value)=>{
+    const onChageDateStart = (value) => {
         setDateStart(value)
         var filter = {
-            search:search,
-            date__gte:value !== ''? value+" 00:00":null,
-            date__lte:dateEnd !== ''? dateEnd + " 00:00":null
+            search: search,
+            date__gte: value !== '' ? value + " 00:00" : null,
+            date__lte: dateEnd !== '' ? dateEnd + " 00:00" : null
         }
         setInvoiceFilter(filter)
         get_invoiceFilter()
     }
-    const onChageDateEnd = (value)=>{
+    const onChageDateEnd = (value) => {
         setDateEnd(value)
         var filter = {
-            search:search,
-            date__gte:dateStart !== ''? dateStart+" 00:00":null,
-            date__lte:value !== ''? value + " 00:00":null
+            search: search,
+            date__gte: dateStart !== '' ? dateStart + " 00:00" : null,
+            date__lte: value !== '' ? value + " 00:00" : null
         }
         setInvoiceFilter(filter)
         get_invoiceFilter()
     }
 
-    const openModalInvoiceDetail = (invoice) =>{
+    const openModalInvoiceDetail = (invoice) => {
         setModalInvoiceData(invoice)
         setOpenInvoiceModal(true)
     }
 
     const deleteInvoice = async (id) => {
         const response = await api.delete(`/invoice/${id}/`)
-        if (response.data.success === true){
+        if (response.data.success === true) {
             get_invoiceFilter();
         }
     }
 
-    const closeModal = () =>{
+    const closeModal = () => {
         get_invoiceFilter()
         console.log('ok');
-      };
+    };
 
     return (
         <Container>
             <TopList>
                 <TextTop>Trip List</TextTop>
-                <MdOutlineSearch size={20} style={{position:'absolute', marginLeft:"300px"}} color="#979999" />
-                <Input type="text" placeholder="Search by ID, location, driver"  onChange={v => onChageSearch(v.target.value)}/>
-                <div style={{marginLeft:"auto"}}>
-                    <DateText>Start:</DateText>
-                    <DateInput type="date" onChange={v=>onChageDateStart(v.target.value)}/>
-                    <DateText>End:</DateText>
-                    <DateInput type="date" onChange={v=>onChageDateEnd(v.target.value)}/>
+                <MdOutlineSearch size={20} style={{ position: 'absolute', marginLeft: "300px" }} color="#979999" />
+                <Input type="text" placeholder="Search by ID, location, driver" onChange={v => onChageSearch(v.target.value)} />
+                <div style={{ marginLeft: "auto" ,display:'flex'}}>
+                    <div>
+                        <DateText>Start:</DateText>
+                        <DateInput type="date" onChange={v => onChageDateStart(v.target.value)} />
+                    </div>
+                    <div>
+                        <DateText>End:</DateText>
+                        <DateInput type="date" onChange={v => onChageDateEnd(v.target.value)} />
+                    </div>
                 </div>
             </TopList>
             <InvoiceContainer>
-                {invoices.data !== undefined?invoices.data.map((invoice, index)=>(
-                    <InvoiceItem key={index} invoice={invoice} onClick={()=>openModalInvoiceDetail(invoice)} />
-                )):null}
+                {invoices.data !== undefined ? invoices.data.map((invoice, index) => (
+                    <InvoiceItem key={index} invoice={invoice} onClick={() => openModalInvoiceDetail(invoice)} />
+                )) : null}
             </InvoiceContainer>
             <BoardContainer>
-                {invoices.board_data !== undefined? invoices.board_data.map((board, index)=>(
+                {invoices.board_data !== undefined ? invoices.board_data.map((board, index) => (
                     <BoardText key={index}>{board.name} Groos: {board.gross} $</BoardText>
-                )):null}
-                    
+                )) : null}
+
             </BoardContainer>
             <TotalDataContainer>
                 <BoardText>Total Gross: {invoices.total_gross} $</BoardText>
                 <BoardText>Total milies: {invoices.total_miles}</BoardText>
                 <BoardText>Avrage: {invoices.total_average}$/per mile</BoardText>
             </TotalDataContainer>
-            <InvoiceModal setShowModal={setOpenInvoiceModal} showModal={openInvoiceModal} 
-            invoice={modalInvoiceData} deleteInvoice={deleteInvoice} setInvoice={setModalInvoiceData} closeModal2={closeModal} />
+            <InvoiceModal setShowModal={setOpenInvoiceModal} showModal={openInvoiceModal}
+                invoice={modalInvoiceData} deleteInvoice={deleteInvoice} setInvoice={setModalInvoiceData} closeModal2={closeModal} />
         </Container>
     );
 }

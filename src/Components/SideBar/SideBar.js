@@ -9,7 +9,7 @@ export const Container = styled.div`
     bottom: 0;
     min-width: 230px;
     background-color: #005951;
-    height: 95vh;
+    height: 100vh;
     position: fixed;
     margin-top: 50px;
     top: 0;
@@ -23,7 +23,7 @@ export const MenuItem = styled(Link)`
     font-size: 16px;
     cursor: pointer;
     color: white;
-    padding: 20px;
+    padding: 17px;
     padding-right: 0px;
     padding-left: 40px;
     font-family: 'Roboto';
@@ -57,7 +57,7 @@ export const DropMenuItem = styled(Link)`
 
 export const Label = styled.span`
     padding-left: 40px;
-    padding-top: 60px;
+    padding-top: 20px;
     padding-bottom: 20px;
     font-family: 'Roboto';
     font-size: 13px;
