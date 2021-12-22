@@ -1,10 +1,10 @@
 import React from 'react'
 import { Container, Logo, Text,Toggle } from './TopBar';
-
+import logo from '../../images/logo.png'
 const TopBar = ({setMenuOpen, menuOpen}) =>{
     return (
         <Container>
-            <Logo src='/images/logo.png'/>
+            <Logo src={logo}/>
             <Toggle onClick={()=>setMenuOpen(!menuOpen)}>
                 <span/>
                 <span/>

@@ -4,6 +4,7 @@ import { Background, Button, DriverContainer, ModalContent, ModalWrapper, Title,
   TruckContainer,InvoiceContainer, Text, LocationContainer, SubText, DetailContainer, DetailItem, DetailText, BottomContainer, DocumentContainer, FileInput, FilesContainer, FilesLink, File, UploadFile } from './InvoiceModal';
 import { MdOutlineLocalShipping, MdPersonOutline, MdOutlineLocationOn, MdClose, MdUploadFile, MdDone, MdRestoreFromTrash } from "react-icons/md";
 import api from '../../../api/api';
+import pdf from '../../../images/pdf.png';
 const token = localStorage.getItem('token')
 
 
@@ -168,7 +169,7 @@ export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice,
                               <MdDone style={{cursor:'pointer'}} onClick={()=>UploadDocument(invoice.id)} color="#005951" size={20}/>
                               <MdRestoreFromTrash onClick={()=>setFile(null)}  style={{cursor:'pointer', marginTop:"5px"}} color="red" size={20}/>
                             </div>
-                            <File  src="/images/pdf.png" alt={file.name} title={file.name}/>
+                            <File  src={pdf} alt={file.name} title={file.name}/>
                           </UploadFile>:null}
                           <FilesContainer>
                             {invoice.documents?.map((doc, index)=>(
@@ -177,7 +178,7 @@ export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice,
                                 <MdRestoreFromTrash onClick={()=>delete_pdf(doc.id)}  key={index} style={{cursor:'pointer'}} color="red" size={20}/>
                                 </div>
                                 <FilesLink href={doc.file} target="_blank">
-                                    <File src="/images/pdf.png" alt={doc.name} title={doc.name}/>
+                                    <File src={pdf} alt={doc.name} title={doc.name}/>
                                 </FilesLink>
                               </UploadFile>
                             ))}

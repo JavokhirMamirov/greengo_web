@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import api from '../../../api/api';
 import {DocContainer,File,FileInput,FilesContainer,FilesLink,ItemContainer, Span, UploadFile } from './Content';
 import { BASE_URL_FILE } from '../../../api/base_url';
+import pdf from '../../../images/pdf.png';
+
 const token = localStorage.getItem('token')
 
 
@@ -63,7 +65,7 @@ const DocItem = ({doc, GetDocsTypes}) => {
                     <MdDone style={{cursor:'pointer'}} onClick={()=>UploadDocument(doc.id)} color="#005951" size={20}/>
                     <MdRestoreFromTrash onClick={()=>setFile(null)}  style={{cursor:'pointer', marginTop:"5px"}} color="red" size={20}/>
                     </div>
-                    <File  src="/images/pdf.png" alt={file.name} title={file.name}/>
+                    <File  src={pdf} alt={file.name} title={file.name}/>
                 </UploadFile>:null}
                 <FilesContainer>
                     {doc.file.map((fl, index)=>(
@@ -72,7 +74,7 @@ const DocItem = ({doc, GetDocsTypes}) => {
                             <MdRestoreFromTrash onClick={()=>delete_pdf(fl.id)} style={{cursor:'pointer'}}  color="red" size={20}/>
                             </div>
                             <FilesLink href={BASE_URL_FILE+fl.file} target="_blank">
-                                <File src="/images/pdf.png" alt={fl.name} title={fl.name}/>
+                                <File src={pdf} alt={fl.name} title={fl.name}/>
                             </FilesLink>
                         </UploadFile>
                     ))}
