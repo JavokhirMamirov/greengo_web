@@ -131,7 +131,7 @@ const DashBoardForm = ({ drivers, dispatchers, operators, boards, SetUpInvoice }
                 <Form2>
 
                    <NewMedia>
-                   <PlacesAutocomplete onChange={setOrigin} placeholder="Origin" value2={origin} />
+                   <PlacesAutocomplete  onChange={setOrigin} placeholder="Origin" value2={origin} />
                     <Input type="number" step="0.01" onChange={v => setMilage(v.target.value)}
                         style={{ width: "70px" }} value={milage} placeholder="Millage" />
                     <PlacesAutocomplete onChange={setDestination} placeholder="Destination" value2={destination} />

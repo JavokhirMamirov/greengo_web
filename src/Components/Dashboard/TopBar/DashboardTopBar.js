@@ -32,6 +32,9 @@ export const TimeText = styled.span`
     margin-left: auto;
     order: 2;
     padding: 10px 30px;
+    @media (max-width: 900px) {
+        font-size:13px
+     }
 `;
 
 export const TabItem = styled.button`

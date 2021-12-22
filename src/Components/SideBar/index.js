@@ -8,7 +8,7 @@ const SideBar = ({menuOpen, Logout}) =>{
         Logout();
     }
     return (
-        <Container menuOpen={menuOpen}>
+        <Container style={{overflow:'clip'}} menuOpen={menuOpen}>
             <MenuItem  to='/'>Dashboard</MenuItem>
             <MenuItem to='/invoice'>Invoice</MenuItem>
             <MenuItem to='#'>Statements</MenuItem>
@@ -21,9 +21,9 @@ const SideBar = ({menuOpen, Logout}) =>{
             <MenuItem to="/preformance">Preformance</MenuItem>
             <MenuItem to="#" onClick={()=>LogOutD()}>Logout</MenuItem>
             <Label>Quick Links</Label>
-            <QuickLink>TRIUMPH</QuickLink>
-            <QuickLink>EzCOI</QuickLink>
-            <QuickLink>FleetONE</QuickLink>
+            <QuickLink href='https://www.mytriumph.com/'>TRIUMPH</QuickLink>
+            <QuickLink href='https://www.ezcoi.com/Default.aspx?ReturnUrl=%2FUser%2FUserControlCenter.aspx'>EzCOI</QuickLink>
+            <QuickLink href='https://manage.fleetone.com/cards/IndexFleetone.action'>FleetONE</QuickLink>
         </Container>
     );
 }

@@ -55,6 +55,9 @@ export const Input = styled.input`
     padding: 0px 2px 0px 10px;
     float: left;
     margin:0px 20px 10px 0px;
+    @media (max-width: 900px) {
+        font-size:11px
+     }
 `;
 
 export const Select = styled.select`
@@ -64,6 +67,9 @@ export const Select = styled.select`
     outline: none;
     padding: 10px 20px 10px 10px;
     float: left;
+    @media (max-width: 900px) {
+       font-size:11px
+    }
 `;
 
 export const Option = styled.option`

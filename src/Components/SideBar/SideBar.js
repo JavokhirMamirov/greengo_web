@@ -5,7 +5,6 @@ import {
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    overflow:auto;
     bottom: 0;
     min-width: 230px;
     background-color: #005951;
@@ -23,7 +22,7 @@ export const MenuItem = styled(Link)`
     font-size: 16px;
     cursor: pointer;
     color: white;
-    padding: 17px;
+    padding: 14px;
     padding-right: 0px;
     padding-left: 40px;
     font-family: 'Roboto';
@@ -46,7 +45,7 @@ export const DropMenuItem = styled(Link)`
     cursor: pointer;
     color: white;
     font-family: 'Roboto';
-    padding: 15px;
+    padding: 10px;
     padding-right: 0px;
     padding-left: 80px;
 
@@ -70,8 +69,9 @@ export const QuickLink = styled.a`
     font-size: 16px;
     padding: 15px;
     font-family: 'Roboto';
-    margin: 10px 40px;
+    margin: 5px 40px;
     text-align:center;
     color: white;
     cursor: pointer;
+    text-decoration:none;
 `;
