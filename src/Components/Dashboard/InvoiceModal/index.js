@@ -3,17 +3,21 @@ import { useSpring, animated } from 'react-spring';
 import { Background, Button, DriverContainer, ModalContent, ModalWrapper, Title, TopBar,
   TruckContainer,InvoiceContainer, Text, LocationContainer, SubText, DetailContainer, DetailItem, DetailText, BottomContainer, DocumentContainer, FileInput, FilesContainer, FilesLink, File, UploadFile } from './InvoiceModal';
 import { MdOutlineLocalShipping, MdPersonOutline, MdOutlineLocationOn, MdClose, MdUploadFile, MdDone, MdRestoreFromTrash } from "react-icons/md";
+import { UpdateInvoiceModal } from '../IvoiceUpdatemodal';
 import api from '../../../api/api';
 import pdf from '../../../images/pdf.png';
 const token = localStorage.getItem('token')
 
 
-
-export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice,setInvoice, closeModal2}){
+export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice,setInvoice, closeModal2,EditFunction}){
   const modalRef = useRef();
   const fileInputRef = useRef();
   const [documentShow, setDocumentShow] = useState(false);
   const [file, setFile] = useState(null);
+
+
+
+
   const animation = useSpring({
     config: {
       duration: 250
@@ -103,9 +107,12 @@ export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice,
     
   }
 
+  
+
 
   return (
     <>
+   
       {showModal ? (
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
@@ -113,7 +120,7 @@ export function InvoiceModal ({ showModal, setShowModal, invoice, deleteInvoice,
               <ModalContent>
                   <TopBar>
                       <Title>Trip detail</Title>
-                      <Button>Edit</Button>
+                      <Button onClick={EditFunction}>Edit</Button>
                       <Button onClick={()=>Delete_Invoice(invoice.id)}>Remove</Button>
                       <MdClose size={26} color="#fff" style={{marginRight:"10px", cursor:"pointer"}} onClick={()=>setShowModal(false)}/>
                   </TopBar>
