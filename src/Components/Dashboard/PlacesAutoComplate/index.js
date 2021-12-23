@@ -11,7 +11,7 @@ import {
 
 import "@reach/combobox/styles.css";
 
-const PlacesAutocomplete = ({onChange, placeholder, value2}) => {
+const PlacesAutocomplete = ({onChange, placeholder, value2,stylenew = false}) => {
 
     const [listOpen, setListOpen] = useState(false)
   const {
@@ -35,9 +35,11 @@ const PlacesAutocomplete = ({onChange, placeholder, value2}) => {
 
   };
 
+
+
   return (
     <Combobox onSelect={handleSelect} aria-labelledby="demo" style={{float:'left'}}>
-      <ComboboxInput value={value2} onChange={handleInput} placeholder={placeholder} disabled={!ready} style={styleInput} />
+      <ComboboxInput value={value2} onChange={handleInput} placeholder={placeholder} disabled={!ready} style={stylenew ?  styleInput2 : styleInput}  />
       <ComboboxPopover>
         <ComboboxList>
           {listOpen === true &&
@@ -58,7 +60,19 @@ const styleInput = {
     outline: "none",
     padding: "0px 2px 0px 10px",
     float: "left",
-    margin:"0px 20px 10px 0px"
+    margin:"0px 20px 10px 0px",
+    
+}
+const styleInput2 = {
+  border: "1px solid #8a8a8a",
+  height: "33px",
+  fontSize: "14px",
+  outline: "none",
+  padding: "0px 2px 0px 10px",
+  float: "left",
+  margin:"5px 5px 10px 0px",
+  width:'93%'
+  
 }
 
 const  styleOption = {

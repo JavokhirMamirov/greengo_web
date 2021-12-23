@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-import {Mediadiv, Container, TopList, TextTop, Input, DateInput, DateText, InvoiceContainer, BoardContainer, BoardText, TotalDataContainer } from './DashboardInvoice';
+import { Mediadiv, Container, TopList, TextTop, Input, DateInput, DateText, InvoiceContainer, BoardContainer, BoardText, TotalDataContainer } from './DashboardInvoice';
 import { MdOutlineSearch } from 'react-icons/md'
 import InvoiceItem from '../Invoice';
+
+import { UpdateInvoiceModal } from '../IvoiceUpdatemodal';
+
 import { GetInvoices } from '../../../api/requests';
 import { InvoiceModal } from '../InvoiceModal';
 import api from '../../../api/api';
@@ -16,6 +19,7 @@ const DashboardInvoice = ({ invoices, setInvoices, invoiceFilter, setInvoiceFilt
     const [dateEnd, setDateEnd] = useState('');
     const [modalInvoiceData, setModalInvoiceData] = useState('');
     const [openInvoiceModal, setOpenInvoiceModal] = useState(false);
+    const [updatemodalshow, setupdatemodalshow] = useState(false)
 
     const get_invoiceFilter = async () => {
         const res_dr = await GetInvoices(invoiceFilter);
@@ -71,13 +75,18 @@ const DashboardInvoice = ({ invoices, setInvoices, invoiceFilter, setInvoiceFilt
         console.log('ok');
     };
 
+    const EditFunction = () => {
+        setupdatemodalshow(true)
+        setOpenInvoiceModal(false)
+    }
+
     return (
         <Container>
             <TopList>
                 <TextTop>Trip List</TextTop>
                 <MdOutlineSearch size={20} style={{ position: 'absolute', marginLeft: "280px" }} color="#979999" />
                 <Input type="text" placeholder="Search by ID, location, driv.." onChange={v => onChageSearch(v.target.value)} />
-                <div style={{ marginLeft: "auto" ,display:'flex'}}>
+                <div style={{ marginLeft: "auto", display: 'flex' }}>
                     <Mediadiv>
                         <DateText>Start:</DateText>
                         <DateInput type="date" onChange={v => onChageDateStart(v.target.value)} />
@@ -105,7 +114,11 @@ const DashboardInvoice = ({ invoices, setInvoices, invoiceFilter, setInvoiceFilt
                 <BoardText>Avrage: {invoices.total_average}$/per mile</BoardText>
             </TotalDataContainer>
             <InvoiceModal setShowModal={setOpenInvoiceModal} showModal={openInvoiceModal}
-                invoice={modalInvoiceData} deleteInvoice={deleteInvoice} setInvoice={setModalInvoiceData} closeModal2={closeModal} />
+                invoice={modalInvoiceData} deleteInvoice={deleteInvoice} setInvoice={setModalInvoiceData} closeModal2={closeModal} EditFunction={EditFunction} />
+            {
+                updatemodalshow ? <UpdateInvoiceModal getfilterinvoice={get_invoiceFilter} invoice={modalInvoiceData} updatemodalshow={updatemodalshow} setupdatemodalshow={setupdatemodalshow} /> : null
+            }
+
         </Container>
     );
 }
