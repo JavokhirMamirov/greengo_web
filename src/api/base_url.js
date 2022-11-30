@@ -1,2 +1,2 @@
-// export const BASE_URL_FILE = 'http://greengo.apteki.uz'
-export const BASE_URL_FILE = 'localhost'
+export const BASE_URL_FILE = 'http://greengo.digital-city.uz'
+// export const BASE_URL_FILE = 'localhost'
