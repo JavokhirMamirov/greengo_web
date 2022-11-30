@@ -3,8 +3,7 @@ FROM node:16-alpine
 WORKDIR /app
 
 COPY package.json .
-
-RUN npm install react-scripts
+COPY package-lock.json .
 
 RUN npm install
 
